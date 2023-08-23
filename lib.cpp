@@ -1,4 +1,5 @@
 #include <string>
+#include "lib.h"
 
 int sum(int a, int b)
 {
