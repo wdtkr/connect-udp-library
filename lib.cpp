@@ -1,5 +1,6 @@
 #include <string>
 #include <fstream>
+#include <thread>
 #include <cstring>      // for strcpy and strlen
 #include <cstdlib>      // for exit and EXIT_FAILURE
 #include <iostream>     // for cout (optional)
@@ -9,29 +10,30 @@
 #include <arpa/inet.h>  // for inet_addr
 #include "lib.h"
 
-std::thread *pThread = nullptr;
-CallbackType g_callback = nullptr;
+CallbackType debug_callback = nullptr;
+CallbackType receive_callback = nullptr;
+CallbackType start_callback = nullptr;
 
-void setCallback(CallbackType callback)
+struct sockaddr_in servaddr;
+bool stopThreadFlag = false;
+int sockfd;
+char buffer[1024];
+
+void setCallback(CallbackType debug, CallbackType receive, CallbackType start)
 {
-    g_callback = callback;
+    debug_callback = debug;
+    receive_callback = receive;
+    start_callback = start;
+
     triggerCallback();
 }
 
 void triggerCallback()
 {
-    if (g_callback != nullptr)
+    if (debug_callback != nullptr)
     {
-        g_callback("Hello from C++");
+        debug_callback("debugコールバック");
     }
-}
-
-const char *registerFqdn(const char *a)
-{
-    const char szSampleString[] = "Hello World";
-    char *pszReturn = new char[strlen(szSampleString) + 1];
-    strcpy(pszReturn, szSampleString);
-    return pszReturn;
 }
 
 // UDPメッセージを送信する関数
@@ -43,8 +45,7 @@ void sendUDPMessage(const char *IP, int port, const char *message)
     // UDPソケットの作成
     if ((sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
     {
-        perror("socket creation failed"); // ソケット作成失敗時のエラーメッセージ
-        exit(EXIT_FAILURE);               // プログラムを終了
+        debug_callback("ソケット作成失敗"); // プログラムを終了
     }
 
     memset(&servaddr, 0, sizeof(servaddr)); // servaddrを0で初期化
@@ -57,25 +58,27 @@ void sendUDPMessage(const char *IP, int port, const char *message)
     // メッセージを送信
     if (sendto(sockfd, message, strlen(message), 0, (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
     {
-        perror("send failed"); // 送信失敗時のエラーメッセージ
-        exit(EXIT_FAILURE);    // プログラムを終了
+        debug_callback("送信失敗");
     }
 
     close(sockfd); // ソケットを閉じる
 }
 
-// UDPメッセージを受信する関数
-void receiveUDPMessage(int port)
+// UDPメッセージを受信するための準備を行う関数
+void preReceiveUDPMessage(int port)
 {
-    int sockfd;
-    struct sockaddr_in servaddr;
-
-    char buffer[1024];
-
     if ((sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
     {
-        perror("socket creation failed");
-        exit(EXIT_FAILURE);
+        debug_callback("socket creation failed 1");
+        return;
+    }
+
+    // ソケットオプションの設定
+    int enable = 1;
+    if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &enable, sizeof(int)) < 0)
+    {
+        debug_callback("setsockopt(SO_REUSEADDR) failed");
+        return;
     }
 
     memset(&servaddr, 0, sizeof(servaddr));
@@ -86,21 +89,27 @@ void receiveUDPMessage(int port)
 
     if (bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
     {
-        perror("bind failed");
-        exit(EXIT_FAILURE);
+        debug_callback("socket creation failed 2");
+        return;
     }
 
-    while (true)
+    start_callback("正常に受信を開始しました。");
+}
+
+// UDPメッセージを受信する関数
+void receiveUDPMessage()
+{
+    debug_callback("receiveUDPMessageが実行開始されました。");
+    socklen_t len;
+    int n = recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr *)&servaddr, &len);
+    buffer[n] = '\0';
+
+    if (receive_callback)
     {
-        socklen_t len;
-        int n = recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr *)&servaddr, &len);
-        buffer[n] = '\0';
-
-        if (g_callback)
-        {
-            g_callback(buffer);
-        }
+        receive_callback(buffer);
     }
+
+    debug_callback("receiveUDPMessageが完了しました。");
 }
 
 const char *sendBinaryData(const char *a)
@@ -110,16 +119,13 @@ const char *sendBinaryData(const char *a)
     return pszReturn;
 }
 
-void waitDataReceive()
-{
-}
-
-void cppCallBack()
-{
-    // テスト用。後々は、関数を引数に受け取ってから、その関数をコールバックする
-}
-
 void freeMemory(const char *ptr)
 {
     delete[] ptr;
+}
+
+// Socketの正常終了
+void socketClose()
+{
+    close(sockfd);
 }
