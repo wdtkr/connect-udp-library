@@ -19,6 +19,14 @@ bool stopThreadFlag = false;
 int sockfd;
 char buffer[1024];
 
+void triggerCallback()
+{
+    if (debug_callback != nullptr)
+    {
+        debug_callback("debugコールバック");
+    }
+}
+
 void setCallback(CallbackType debug, CallbackType receive, CallbackType start)
 {
     debug_callback = debug;
@@ -26,14 +34,6 @@ void setCallback(CallbackType debug, CallbackType receive, CallbackType start)
     start_callback = start;
 
     triggerCallback();
-}
-
-void triggerCallback()
-{
-    if (debug_callback != nullptr)
-    {
-        debug_callback("debugコールバック");
-    }
 }
 
 // UDPメッセージを送信する関数
@@ -101,7 +101,8 @@ void receiveUDPMessage()
 {
     debug_callback("receiveUDPMessageが実行開始されました。");
     socklen_t len;
-    int n = recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr *)&servaddr, &len);
+    // int -> ssize_t に型を変更。動かなかったらここが原因
+    ssize_t n = recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr *)&servaddr, &len);
     buffer[n] = '\0';
 
     if (receive_callback)
