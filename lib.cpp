@@ -8,7 +8,7 @@
 #include <netinet/in.h> // for sockaddr_in
 #include <unistd.h>     // for close
 #include <arpa/inet.h>  // for inet_addr
-#include "lib.h"
+#include "lib.hpp"
 
 CallbackType debug_callback = nullptr;
 CallbackType receive_callback = nullptr;
@@ -45,7 +45,7 @@ void sendUDPMessage(const char *IP, int port, const char *message)
     // UDPソケットの作成
     if ((sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
     {
-        debug_callback("ソケット作成失敗"); // プログラムを終了
+        debug_callback("ソケット作成失敗");
     }
 
     memset(&servaddr, 0, sizeof(servaddr)); // servaddrを0で初期化
