@@ -6,6 +6,8 @@
 #define UNITYEXPORT
 #endif
 
+#include <unistd.h>
+
 // ReceiveCallbackTypeの引数
 // (*ReceiveCallbackType)(データ, データサイズ, データの種類);
 // データの種類
@@ -13,7 +15,7 @@
 // 2: 座標
 // 3: ビデオデータ
 
-typedef void (*ReceiveCallbackType)(const char *, int, int);
+typedef void (*ReceiveCallbackType)(const char *, ssize_t, int);
 typedef void (*CallbackType)(const char *);
 
 extern "C"

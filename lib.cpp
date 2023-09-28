@@ -102,13 +102,13 @@ void receiveUDPMessage()
 {
     debug_callback("receiveUDPMessageが実行開始されました。");
     socklen_t len;
-    // int -> ssize_t に型を変更。動かなかったらここが原因
     ssize_t n = recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr *)&servaddr, &len);
     buffer[n] = '\0';
 
+    // receive_callbackのnullptrチェック
     if (receive_callback)
     {
-        receive_callback(buffer, (int)n, 0);
+        receive_callback(buffer, n, 0);
     }
 
     debug_callback("receiveUDPMessageが完了しました。");
