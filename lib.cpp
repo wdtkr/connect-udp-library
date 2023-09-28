@@ -11,7 +11,7 @@
 #include "lib.hpp"
 
 CallbackType debug_callback = nullptr;
-CallbackType receive_callback = nullptr;
+ReceiveCallbackType receive_callback = nullptr;
 CallbackType start_callback = nullptr;
 
 struct sockaddr_in servaddr;
@@ -27,7 +27,7 @@ void triggerCallback()
     }
 }
 
-void setCallback(CallbackType debug, CallbackType receive, CallbackType start)
+void setCallback(CallbackType debug, ReceiveCallbackType receive, CallbackType start)
 {
     debug_callback = debug;
     receive_callback = receive;
@@ -108,7 +108,7 @@ void receiveUDPMessage()
 
     if (receive_callback)
     {
-        receive_callback(buffer);
+        receive_callback(buffer, (int)n, 0);
     }
 
     debug_callback("receiveUDPMessageが完了しました。");
