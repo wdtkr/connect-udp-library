@@ -65,6 +65,7 @@ void sendUDPMessage(const char *IP, int port, const char *message)
 }
 
 // UDPメッセージを受信するための準備を行う関数
+// initReceiveUDPMessageとかに変えたいかも。
 void preReceiveUDPMessage(int port)
 {
     if ((sockfd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
