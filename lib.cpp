@@ -39,6 +39,9 @@ void setCallback(CallbackType debug, ReceiveCallbackType receive, CallbackType s
 // UDPメッセージを送信する関数
 void sendUDPMessage(const char *IP, int port, const char *message)
 {
+    // buffer初期化
+    memset(buffer, 0, sizeof(buffer));
+
     int sockfd;                  // ソケットのファイルディスクリプタを格納
     struct sockaddr_in servaddr; // サーバーアドレス情報を格納
 
@@ -100,6 +103,9 @@ void preReceiveUDPMessage(int port)
 // UDPメッセージを受信する関数
 void receiveUDPMessage()
 {
+    // buffer初期化
+    memset(buffer, 0, sizeof(buffer));
+
     debug_callback("receiveUDPMessageが実行開始されました。");
     socklen_t len;
     ssize_t n = recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr *)&servaddr, &len);
