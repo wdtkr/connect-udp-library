@@ -39,6 +39,9 @@ void setCallback(CallbackType debug, ReceiveCallbackType receive, CallbackType s
 // UDPメッセージを送信する関数
 void sendUDPMessage(const char *IP, int port, const char *message)
 {
+    std::string debug_message_pre = "C++ 送信前段階：" + std::string(message);
+    debug_callback(debug_message_pre.c_str());
+
     // buffer初期化
     memset(buffer, 0, sizeof(buffer));
 
