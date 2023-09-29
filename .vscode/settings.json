@@ -65,6 +65,8 @@
         "algorithm": "cpp",
         "thread": "cpp",
         "deque": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "stack": "cpp"
     }
 }

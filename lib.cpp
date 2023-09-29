@@ -58,6 +58,9 @@ void sendUDPMessage(const char *IP, int port, const char *message)
     servaddr.sin_port = htons(port);
     servaddr.sin_addr.s_addr = inet_addr(IP);
 
+    std::string debug_message = "C++ 送信前段階：" + std::string(message);
+    debug_callback(debug_message.c_str());
+
     // メッセージを送信
     if (sendto(sockfd, message, strlen(message), 0, (const struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
     {
@@ -114,6 +117,8 @@ void receiveUDPMessage()
     // receive_callbackのnullptrチェック
     if (receive_callback)
     {
+        std::string debug_message = "C++ 受信後段階：" + std::string(buffer);
+        debug_callback(debug_message.c_str());
         receive_callback(buffer, n, 0);
     }
 
