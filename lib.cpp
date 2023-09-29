@@ -108,7 +108,7 @@ void receiveUDPMessage()
 
     debug_callback("receiveUDPMessageが実行開始されました。");
     socklen_t len;
-    ssize_t n = recvfrom(sockfd, buffer, 1024, 0, (struct sockaddr *)&servaddr, &len);
+    ssize_t n = recvfrom(sockfd, buffer, sizeof(buffer) - 1, 0, (struct sockaddr *)&servaddr, &len);
     buffer[n] = '\0';
 
     // receive_callbackのnullptrチェック
