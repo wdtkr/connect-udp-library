@@ -8,6 +8,8 @@
 #include <netinet/in.h> // for sockaddr_in
 #include <unistd.h>     // for close
 #include <arpa/inet.h>  // for inet_addr
+#include <dlfcn.h>
+#include <cisco-openh264-0a48f4d/codec/api/wels/codec_api.h>
 #include "lib.hpp"
 
 CallbackType debug_callback = nullptr;
