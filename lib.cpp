@@ -9,6 +9,7 @@
 #include <unistd.h>     // for close
 #include <arpa/inet.h>  // for inet_addr
 #include <dlfcn.h>
+// テスト
 #include <cisco-openh264-0a48f4d/codec/api/wels/codec_api.h>
 #include "lib.hpp"
 
@@ -128,6 +129,55 @@ void receiveUDPMessage()
     }
 
     debug_callback("receiveUDPMessageが完了しました。");
+}
+
+// テスト
+void sendMovieData(const char *IP, int port, unsigned char *videoData, int videoLength, unsigned char *soundData, int soundLength)
+{
+    // OpenH264の初期化
+    ISVCEncoder *encoder;
+    WelsCreateSVCEncoder(&encoder);
+
+    // エンコーダー設定の構成
+    SEncParamExt param;
+    encoder->GetDefaultParams(&param);
+    // ... パラメータ設定（解像度、ビットレート、フレームレートなど）
+
+    encoder->InitializeExt(&param);
+
+    // フレームのエンコード処理を開始
+    SFrameBSInfo info;
+    memset(&info, 0, sizeof(SFrameBSInfo));
+
+    // ここでデータはC#から渡された生のビデオフレームであると仮定しています。
+    SSourcePicture pic;
+    memset(&pic, 0, sizeof(SSourcePicture));
+    pic.iPicWidth = 640;                // 実際のフレーム幅に置き換えます
+    pic.iPicHeight = 480;               // 実際のフレーム高さに置き換えます
+    pic.pData[0] = videoData;           // 生データのポインタ
+    pic.iColorFormat = videoFormatI420; // 使用するビデオフォーマットに応じて変更
+    pic.uiTimeStamp = 0;                // 任意のタイムスタンプ（例：フレーム番号）
+
+    int frameSize = videoLength;
+
+    // エンコード処理
+    int rv = encoder->EncodeFrame(&pic, &info);
+    if (rv != 0)
+    {
+        std::cerr << "Encode failed." << std::endl;
+        // エラー処理
+    }
+
+    // エンコードされたデータの送信
+    if (info.eFrameType != videoFrameTypeSkip)
+    {
+        // ここでエンコードされたデータを取得し、IPとポートを使用してネットワーク経由で送信します。
+        // UDP送信の実装などがここに必要です。
+    }
+
+    // クリーンアップ
+    encoder->Uninitialize();
+    WelsDestroySVCEncoder(encoder);
 }
 
 const char *sendBinaryData(const char *a)
