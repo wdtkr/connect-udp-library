@@ -10,7 +10,7 @@
 #include <arpa/inet.h>  // for inet_addr
 #include <dlfcn.h>
 // テスト
-#include <cisco-openh264-0a48f4d/codec/api/wels/codec_api.h>
+#include "openh264-2.3.1/codec/api/wels/codec_api.h"
 #include "lib.hpp"
 
 CallbackType debug_callback = nullptr;

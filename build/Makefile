@@ -117,41 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Main
+# Target rules for targets named MyVideoEncoder
 
 # Build rule for target.
-Main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Main
-.PHONY : Main
+MyVideoEncoder: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MyVideoEncoder
+.PHONY : MyVideoEncoder
 
 # fast build rule for target.
-Main/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/build
-.PHONY : Main/fast
+MyVideoEncoder/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyVideoEncoder.dir/build.make CMakeFiles/MyVideoEncoder.dir/build
+.PHONY : MyVideoEncoder/fast
 
-test1.o: test1.cpp.o
-.PHONY : test1.o
+test.o: test.cpp.o
+.PHONY : test.o
 
 # target to build an object file
-test1.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/test1.cpp.o
-.PHONY : test1.cpp.o
+test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyVideoEncoder.dir/build.make CMakeFiles/MyVideoEncoder.dir/test.cpp.o
+.PHONY : test.cpp.o
 
-test1.i: test1.cpp.i
-.PHONY : test1.i
+test.i: test.cpp.i
+.PHONY : test.i
 
 # target to preprocess a source file
-test1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/test1.cpp.i
-.PHONY : test1.cpp.i
+test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyVideoEncoder.dir/build.make CMakeFiles/MyVideoEncoder.dir/test.cpp.i
+.PHONY : test.cpp.i
 
-test1.s: test1.cpp.s
-.PHONY : test1.s
+test.s: test.cpp.s
+.PHONY : test.s
 
 # target to generate assembly for a file
-test1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Main.dir/build.make CMakeFiles/Main.dir/test1.cpp.s
-.PHONY : test1.cpp.s
+test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyVideoEncoder.dir/build.make CMakeFiles/MyVideoEncoder.dir/test.cpp.s
+.PHONY : test.cpp.s
 
 # Help Target
 help:
@@ -161,10 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Main"
-	@echo "... test1.o"
-	@echo "... test1.i"
-	@echo "... test1.s"
+	@echo "... MyVideoEncoder"
+	@echo "... test.o"
+	@echo "... test.i"
+	@echo "... test.s"
 .PHONY : help
 
 
