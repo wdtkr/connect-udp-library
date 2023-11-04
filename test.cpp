@@ -48,10 +48,8 @@ int CameraTest()
     return 0;
 }
 
-int main()
+int VideoEncode()
 {
-    // CameraTest();
-
     // カメラを起動する
     cv::VideoCapture capture(1); // カメラデバイスのIDは環境によって異なる場合があります
     if (!capture.isOpened())
@@ -95,7 +93,7 @@ int main()
     pic.iStride[2] = pic.iPicWidth / 2;
 
     // ファイルストリームを開く
-    std::ofstream outFile("output.mp4", std::ios::binary | std::ios::out);
+    std::ofstream outFile("output.264", std::ios::binary | std::ios::out);
 
     // 指定された時間だけ映像を取得する
     cv::Mat frame;
@@ -137,8 +135,88 @@ int main()
     WelsDestroySVCEncoder(encoder);
     outFile.close();
 
-    // output.264をoutput.mp4に変換する
-    std::system("ffmpeg -framerate 30 -i output.264 -c copy output.mp4"); // framerateはカメラの実際のフレームレートに応じて調整
+    return 0;
+}
+
+int VideoDecode()
+{
+    // OpenH264 ライブラリを初期化
+    if (WelsInit() != 0)
+    {
+        std::cerr << "Failed to initialize OpenH264" << std::endl;
+        return -1;
+    }
+
+    // デコーダの設定
+    ISVCDecoder *decoder = nullptr;
+    if (WelsCreateDecoder(&decoder) != 0 || decoder == nullptr)
+    {
+        std::cerr << "Failed to create decoder" << std::endl;
+        return -1;
+    }
+
+    SDecodingParam decParam;
+    memset(&decParam, 0, sizeof(SDecodingParam));
+
+    // ビデオファイルを開く
+    const char *videoFileName = "your_h264_file.264"; // ファイル名を適切に設定
+    FILE *videoFile = fopen(videoFileName, "rb");
+    if (videoFile == nullptr)
+    {
+        std::cerr << "Failed to open video file" << std::endl;
+        return -1;
+    }
+
+    // フレームの表示用ウィンドウを作成
+    cv::namedWindow("Decoded Video", cv::WINDOW_NORMAL);
+
+    SFrameBSInfo frameInfo;
+    memset(&frameInfo, 0, sizeof(SFrameBSInfo));
+
+    while (true)
+    {
+        int bytesRead = fread(frameInfo.sLayerInfo[0].pBsBuf, 1, MAX_DATA_SIZE, videoFile);
+        if (bytesRead <= 0)
+        {
+            // ビデオファイルの終了
+            break;
+        }
+
+        // ビデオフレームをデコード
+        if (decoder->DecodeFrame2(frameInfo.sLayerInfo[0].pBsBuf, bytesRead, NULL, &decParam) != 0)
+        {
+            std::cerr << "Failed to decode frame" << std::endl;
+            break;
+        }
+
+        // デコードされたフレームを取得
+        SBufferInfo bufferInfo;
+        if (decoder->GetOption(DECODER_OPTION_GET_OUTPUT, &bufferInfo) != 0)
+        {
+            std::cerr << "Failed to get decoded frame" << std::endl;
+            break;
+        }
+
+        if (bufferInfo.iBufferStatus == 1)
+        {
+            cv::Mat frame(bufferInfo.UsrData.sSystemBuffer.iHeight, bufferInfo.UsrData.sSystemBuffer.iWidth, CV_8UC3, bufferInfo.UsrData.sSystemBuffer.pBuffer[0]);
+            cv::imshow("Decoded Video", frame);
+            cv::waitKey(1);
+        }
+    }
+
+    // リソースのクリーンアップ
+    WelsDestroyDecoder(decoder);
+    fclose(videoFile);
+    WelsCleanup();
+
+    return 0;
+}
+
+int main()
+{
+    // CameraTest();
+    VideoEncode();
 
     return 0;
 }
