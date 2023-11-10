@@ -8,6 +8,13 @@
 
 #include <unistd.h>
 
+enum class DataType : uint8_t
+{
+    TEXT_DATA = 1,
+    INTEGER_DATA = 2,
+    VIDEO_DATA = 3
+};
+
 // ReceiveCallbackTypeの引数
 // (*ReceiveCallbackType)(データ, データサイズ, データの種類);
 // データの種類

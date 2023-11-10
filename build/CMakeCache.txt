@@ -146,7 +146,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=MyVideoEncoder
+CMAKE_PROJECT_NAME:STATIC=VideoStreaming
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib
@@ -224,6 +224,15 @@ MyVideoEncoder_SOURCE_DIR:STATIC=/Users/takeru/Documents/GitHub/connect-udp-libr
 
 //The directory containing a CMake configuration file for OpenCV.
 OpenCV_DIR:PATH=/opt/homebrew/lib/cmake/opencv4
+
+//Value Computed by CMake
+VideoStreaming_BINARY_DIR:STATIC=/Users/takeru/Documents/GitHub/connect-udp-library/build
+
+//Value Computed by CMake
+VideoStreaming_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+VideoStreaming_SOURCE_DIR:STATIC=/Users/takeru/Documents/GitHub/connect-udp-library
 
 //Value Computed by CMake
 test1_BINARY_DIR:STATIC=/Users/takeru/Documents/GitHub/connect-udp-library/build

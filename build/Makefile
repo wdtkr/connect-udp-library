@@ -117,41 +117,78 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named MyVideoEncoder
+# Target rules for targets named testSender
 
 # Build rule for target.
-MyVideoEncoder: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 MyVideoEncoder
-.PHONY : MyVideoEncoder
+testSender: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testSender
+.PHONY : testSender
 
 # fast build rule for target.
-MyVideoEncoder/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyVideoEncoder.dir/build.make CMakeFiles/MyVideoEncoder.dir/build
-.PHONY : MyVideoEncoder/fast
+testSender/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/build
+.PHONY : testSender/fast
 
-test.o: test.cpp.o
-.PHONY : test.o
+#=============================================================================
+# Target rules for targets named testReceiver
+
+# Build rule for target.
+testReceiver: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testReceiver
+.PHONY : testReceiver
+
+# fast build rule for target.
+testReceiver/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/build
+.PHONY : testReceiver/fast
+
+testReceiver.o: testReceiver.cpp.o
+.PHONY : testReceiver.o
 
 # target to build an object file
-test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyVideoEncoder.dir/build.make CMakeFiles/MyVideoEncoder.dir/test.cpp.o
-.PHONY : test.cpp.o
+testReceiver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.o
+.PHONY : testReceiver.cpp.o
 
-test.i: test.cpp.i
-.PHONY : test.i
+testReceiver.i: testReceiver.cpp.i
+.PHONY : testReceiver.i
 
 # target to preprocess a source file
-test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyVideoEncoder.dir/build.make CMakeFiles/MyVideoEncoder.dir/test.cpp.i
-.PHONY : test.cpp.i
+testReceiver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.i
+.PHONY : testReceiver.cpp.i
 
-test.s: test.cpp.s
-.PHONY : test.s
+testReceiver.s: testReceiver.cpp.s
+.PHONY : testReceiver.s
 
 # target to generate assembly for a file
-test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyVideoEncoder.dir/build.make CMakeFiles/MyVideoEncoder.dir/test.cpp.s
-.PHONY : test.cpp.s
+testReceiver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.s
+.PHONY : testReceiver.cpp.s
+
+testSender.o: testSender.cpp.o
+.PHONY : testSender.o
+
+# target to build an object file
+testSender.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/testSender.cpp.o
+.PHONY : testSender.cpp.o
+
+testSender.i: testSender.cpp.i
+.PHONY : testSender.i
+
+# target to preprocess a source file
+testSender.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/testSender.cpp.i
+.PHONY : testSender.cpp.i
+
+testSender.s: testSender.cpp.s
+.PHONY : testSender.s
+
+# target to generate assembly for a file
+testSender.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/testSender.cpp.s
+.PHONY : testSender.cpp.s
 
 # Help Target
 help:
@@ -161,10 +198,14 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... MyVideoEncoder"
-	@echo "... test.o"
-	@echo "... test.i"
-	@echo "... test.s"
+	@echo "... testReceiver"
+	@echo "... testSender"
+	@echo "... testReceiver.o"
+	@echo "... testReceiver.i"
+	@echo "... testReceiver.s"
+	@echo "... testSender.o"
+	@echo "... testSender.i"
+	@echo "... testSender.s"
 .PHONY : help
 
 

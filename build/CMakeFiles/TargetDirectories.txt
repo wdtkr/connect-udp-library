@@ -1,3 +1,4 @@
-/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/MyVideoEncoder.dir
+/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/testSender.dir
+/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/testReceiver.dir
 /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/edit_cache.dir
 /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/rebuild_cache.dir

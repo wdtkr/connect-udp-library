@@ -63,7 +63,8 @@ CMAKE_BINARY_DIR = /Users/takeru/Documents/GitHub/connect-udp-library/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/MyVideoEncoder.dir/all
+all: CMakeFiles/testSender.dir/all
+all: CMakeFiles/testReceiver.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +72,61 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/MyVideoEncoder.dir/clean
+clean: CMakeFiles/testSender.dir/clean
+clean: CMakeFiles/testReceiver.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/MyVideoEncoder.dir
+# Target rules for target CMakeFiles/testSender.dir
 
 # All Build rule for target.
-CMakeFiles/MyVideoEncoder.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyVideoEncoder.dir/build.make CMakeFiles/MyVideoEncoder.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyVideoEncoder.dir/build.make CMakeFiles/MyVideoEncoder.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=1,2 "Built target MyVideoEncoder"
-.PHONY : CMakeFiles/MyVideoEncoder.dir/all
+CMakeFiles/testSender.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=3,4 "Built target testSender"
+.PHONY : CMakeFiles/testSender.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/MyVideoEncoder.dir/rule: cmake_check_build_system
+CMakeFiles/testSender.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/MyVideoEncoder.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/testSender.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles 0
-.PHONY : CMakeFiles/MyVideoEncoder.dir/rule
+.PHONY : CMakeFiles/testSender.dir/rule
 
 # Convenience name for target.
-MyVideoEncoder: CMakeFiles/MyVideoEncoder.dir/rule
-.PHONY : MyVideoEncoder
+testSender: CMakeFiles/testSender.dir/rule
+.PHONY : testSender
 
 # clean rule for target.
-CMakeFiles/MyVideoEncoder.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyVideoEncoder.dir/build.make CMakeFiles/MyVideoEncoder.dir/clean
-.PHONY : CMakeFiles/MyVideoEncoder.dir/clean
+CMakeFiles/testSender.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/clean
+.PHONY : CMakeFiles/testSender.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/testReceiver.dir
+
+# All Build rule for target.
+CMakeFiles/testReceiver.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=1,2 "Built target testReceiver"
+.PHONY : CMakeFiles/testReceiver.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/testReceiver.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/testReceiver.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles 0
+.PHONY : CMakeFiles/testReceiver.dir/rule
+
+# Convenience name for target.
+testReceiver: CMakeFiles/testReceiver.dir/rule
+.PHONY : testReceiver
+
+# clean rule for target.
+CMakeFiles/testReceiver.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/clean
+.PHONY : CMakeFiles/testReceiver.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
