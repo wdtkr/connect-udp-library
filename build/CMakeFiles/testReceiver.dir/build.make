@@ -127,10 +127,6 @@ testReceiver: /opt/homebrew/lib/libopencv_wechat_qrcode.4.8.1.dylib
 testReceiver: /opt/homebrew/lib/libopencv_xfeatures2d.4.8.1.dylib
 testReceiver: /opt/homebrew/lib/libopencv_xobjdetect.4.8.1.dylib
 testReceiver: /opt/homebrew/lib/libopencv_xphoto.4.8.1.dylib
-testReceiver: /opt/homebrew/Cellar/ffmpeg/6.0_1/lib/libavformat.dylib
-testReceiver: /opt/homebrew/Cellar/ffmpeg/6.0_1/lib/libavcodec.dylib
-testReceiver: /opt/homebrew/Cellar/ffmpeg/6.0_1/lib/libavutil.dylib
-testReceiver: /opt/homebrew/Cellar/ffmpeg/6.0_1/lib/libswscale.dylib
 testReceiver: /opt/homebrew/lib/libopencv_shape.4.8.1.dylib
 testReceiver: /opt/homebrew/lib/libopencv_highgui.4.8.1.dylib
 testReceiver: /opt/homebrew/lib/libopencv_datasets.4.8.1.dylib
