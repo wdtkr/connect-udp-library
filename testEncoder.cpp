@@ -1,35 +1,30 @@
 #include <dlfcn.h>
 #include <iostream>
-#include <cassert>
-#include <cstring>
 #include <fstream>
-#include <opencv2/core.hpp>
-#include <opencv2/imgcodecs.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/videoio.hpp>
+#include <vector>
+#include <iterator>
+#include <opencv2/opencv.hpp>
 #include "/Users/takeru/Downloads/openh264-2.3.1/codec/api/wels/codec_api.h"
-#include "/Users/takeru/Documents/GitHub/uvgRTP/include/uvgrtp/lib.hh"
-
-// Tested with OpenCV 3.3
-#include <opencv2/core.hpp>
-#include <opencv2/imgcodecs.hpp>
-#include <opencv2/imgproc.hpp>
 
 using namespace std;
 using namespace cv;
 
-constexpr char REMOTE_ADDRESS[] = "127.0.0.1";
-constexpr uint16_t REMOTE_PORT = 12345;
-
-// the parameters of demostration
-constexpr size_t PAYLOAD_LEN = 100;
-constexpr int AMOUNT_OF_TEST_PACKETS = 100;
-constexpr auto END_WAIT = std::chrono::seconds(5);
+// NALユニットの開始コードを検出する関数
+vector<size_t> FindNALUStartCodes(const vector<uint8_t> &data)
+{
+    vector<size_t> positions;
+    for (size_t i = 0; i < data.size() - 4; ++i)
+    {
+        if (data[i] == 0x00 && data[i + 1] == 0x00 && data[i + 2] == 0x00 && data[i + 3] == 0x01)
+        {
+            positions.push_back(i);
+        }
+    }
+    return positions;
+}
 
 int main()
 {
-    uvgrtp::context ctx;
-
     // ライブラリの読み込み
     void *handle = dlopen("../libopenh264-2.3.1-mac-arm64.dylib", RTLD_LAZY);
     if (!handle)
@@ -38,93 +33,64 @@ int main()
         return -1;
     }
 
-    // エンコーダの作成
-    typedef int (*CreateEncoderFunc)(ISVCEncoder **);
-    CreateEncoderFunc createEncoder = (CreateEncoderFunc)dlsym(handle, "WelsCreateSVCEncoder");
-    ISVCEncoder *encoder = nullptr;
-    if (createEncoder(&encoder) != 0 || encoder == nullptr)
+    // デコーダの作成
+    typedef int (*CreateDecoderFunc)(ISVCDecoder **);
+    CreateDecoderFunc createDecoder = (CreateDecoderFunc)dlsym(handle, "WelsCreateDecoder");
+    ISVCDecoder *decoder = nullptr;
+    if (createDecoder(&decoder) != 0 || decoder == nullptr)
     {
-        cerr << "エンコーダの作成に失敗" << endl;
+        cerr << "デコーダの作成に失敗" << endl;
         return -1;
     }
 
-    // エンコーダの初期化パラメータ
-    SEncParamBase param;
-    memset(&param, 0, sizeof(SEncParamBase));
-    param.iUsageType = CAMERA_VIDEO_REAL_TIME;
-    param.fMaxFrameRate = 30;       // 一般的なフレームレート
-    param.iPicWidth = 1920;         // 幅
-    param.iPicHeight = 1080;        // 高さ
-    param.iTargetBitrate = 5000000; // ビットレート
-    if (encoder->Initialize(&param) != 0)
+    // デコーダの初期化
+    SDecodingParam decParam = {0};
+    decParam.sVideoProperty.eVideoBsType = VIDEO_BITSTREAM_DEFAULT;
+    if (decoder->Initialize(&decParam) != 0)
     {
-        cerr << "エンコーダの初期化に失敗" << endl;
+        cerr << "デコーダの初期化に失敗" << endl;
         return -1;
     }
 
-    // カメラの初期化
-    VideoCapture cap(1);
-    if (!cap.isOpened())
+    namedWindow("Decoded Frame", WINDOW_AUTOSIZE);
+
+    // ファイルを読み込む
+    ifstream videoFile("output.264", ios::in | ios::binary);
+    vector<uint8_t> videoData((istreambuf_iterator<char>(videoFile)), istreambuf_iterator<char>());
+    videoFile.close();
+
+    // NALユニットの開始位置を見つける
+    vector<size_t> nalStartPositions = FindNALUStartCodes(videoData);
+
+    // 各NALユニットをデコードする
+    for (size_t i = 0; i < nalStartPositions.size(); ++i)
     {
-        cerr << "カメラが開けません" << endl;
-        return -1;
-    }
+        size_t start = nalStartPositions[i];
+        size_t end = (i + 1 < nalStartPositions.size()) ? nalStartPositions[i + 1] : videoData.size();
+        size_t length = end - start;
 
-    Mat frame, yuv;
-    int frameCount = 0;
-    int captureDuration = 5; // 秒単位
-    ofstream outFile("output.264", ios::out | ios::binary);
+        // デコード処理
+        SBufferInfo bufInfo;
+        memset(&bufInfo, 0, sizeof(SBufferInfo));
+        unsigned char *pData[3] = {nullptr, nullptr, nullptr};
 
-    while (frameCount < captureDuration * 30)
-    {
-        // 30FPSでエンコード
-        cap >> frame;
-        if (frame.empty())
-            break;
-
-        // YUVフォーマットに変換
-        cvtColor(frame, yuv, COLOR_BGR2YUV_I420);
-
-        SSourcePicture pic;
-        memset(&pic, 0, sizeof(SSourcePicture));
-        pic.iPicWidth = frame.cols;
-        pic.iPicHeight = frame.rows;
-        pic.iColorFormat = videoFormatI420;
-        pic.iStride[0] = frame.cols;
-        pic.iStride[1] = pic.iStride[2] = frame.cols / 2;
-        pic.pData[0] = yuv.data;
-        pic.pData[1] = yuv.data + frame.cols * frame.rows;
-        pic.pData[2] = pic.pData[1] + (frame.cols * frame.rows) / 4;
-
-        SFrameBSInfo info;
-        memset(&info, 0, sizeof(SFrameBSInfo));
-        if (encoder->EncodeFrame(&pic, &info) != 0)
+        int rv = decoder->DecodeFrame2(&videoData[start], length, pData, &bufInfo);
+        if (rv == 0 && bufInfo.iBufferStatus == 1)
         {
-            cerr << "エンコードに失敗" << endl;
-            break;
+            Mat yuvImg(bufInfo.UsrData.sSystemBuffer.iHeight * 3 / 2, bufInfo.UsrData.sSystemBuffer.iWidth, CV_8UC1, pData[0]);
+            Mat rgbImg;
+            cvtColor(yuvImg, rgbImg, COLOR_YUV2BGR_I420);
+            imshow("Decoded Frame", rgbImg);
+            waitKey(30); // 30ms待って画面更新
         }
-
-        // エンコードされたデータをファイルに書き込む
-        for (int layer = 0; layer < info.iLayerNum; ++layer)
-        {
-            int layerSize = 0;
-            SLayerBSInfo &layerInfo = info.sLayerInfo[layer];
-            for (int nal = 0; nal < layerInfo.iNalCount; ++nal)
-            {
-                outFile.write(reinterpret_cast<char *>(layerInfo.pBsBuf + layerSize), layerInfo.pNalLengthInByte[nal]);
-                layerSize += layerInfo.pNalLengthInByte[nal];
-            }
-        }
-        frameCount++;
     }
 
-    // エンコーダとファイルの解放
-    encoder->Uninitialize();
-    typedef void (*DestroyEncoderFunc)(ISVCEncoder *);
-    DestroyEncoderFunc destroyEncoder = (DestroyEncoderFunc)dlsym(handle, "WelsDestroySVCEncoder");
-    destroyEncoder(encoder);
+    // デコーダの終了処理
+    decoder->Uninitialize();
+    typedef void (*DestroyDecoderFunc)(ISVCDecoder *);
+    DestroyDecoderFunc destroyDecoder = (DestroyDecoderFunc)dlsym(handle, "WelsDestroyDecoder");
+    destroyDecoder(decoder);
     dlclose(handle);
-    outFile.close();
 
     return 0;
 }

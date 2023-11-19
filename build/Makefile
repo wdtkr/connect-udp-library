@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named testDecoder
+
+# Build rule for target.
+testDecoder: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testDecoder
+.PHONY : testDecoder
+
+# fast build rule for target.
+testDecoder/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testDecoder.dir/build.make CMakeFiles/testDecoder.dir/build
+.PHONY : testDecoder/fast
+
+#=============================================================================
 # Target rules for targets named testSender
 
 # Build rule for target.
@@ -129,42 +142,29 @@ testSender/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/build
 .PHONY : testSender/fast
 
-#=============================================================================
-# Target rules for targets named testReceiver
-
-# Build rule for target.
-testReceiver: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testReceiver
-.PHONY : testReceiver
-
-# fast build rule for target.
-testReceiver/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/build
-.PHONY : testReceiver/fast
-
-testReceiver.o: testReceiver.cpp.o
-.PHONY : testReceiver.o
+testDecoder.o: testDecoder.cpp.o
+.PHONY : testDecoder.o
 
 # target to build an object file
-testReceiver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.o
-.PHONY : testReceiver.cpp.o
+testDecoder.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testDecoder.dir/build.make CMakeFiles/testDecoder.dir/testDecoder.cpp.o
+.PHONY : testDecoder.cpp.o
 
-testReceiver.i: testReceiver.cpp.i
-.PHONY : testReceiver.i
+testDecoder.i: testDecoder.cpp.i
+.PHONY : testDecoder.i
 
 # target to preprocess a source file
-testReceiver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.i
-.PHONY : testReceiver.cpp.i
+testDecoder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testDecoder.dir/build.make CMakeFiles/testDecoder.dir/testDecoder.cpp.i
+.PHONY : testDecoder.cpp.i
 
-testReceiver.s: testReceiver.cpp.s
-.PHONY : testReceiver.s
+testDecoder.s: testDecoder.cpp.s
+.PHONY : testDecoder.s
 
 # target to generate assembly for a file
-testReceiver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.s
-.PHONY : testReceiver.cpp.s
+testDecoder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testDecoder.dir/build.make CMakeFiles/testDecoder.dir/testDecoder.cpp.s
+.PHONY : testDecoder.cpp.s
 
 testSender.o: testSender.cpp.o
 .PHONY : testSender.o
@@ -198,11 +198,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... testReceiver"
+	@echo "... testDecoder"
 	@echo "... testSender"
-	@echo "... testReceiver.o"
-	@echo "... testReceiver.i"
-	@echo "... testReceiver.s"
+	@echo "... testDecoder.o"
+	@echo "... testDecoder.i"
+	@echo "... testDecoder.s"
 	@echo "... testSender.o"
 	@echo "... testSender.i"
 	@echo "... testSender.s"
