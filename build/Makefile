@@ -142,6 +142,19 @@ testSender/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/build
 .PHONY : testSender/fast
 
+#=============================================================================
+# Target rules for targets named testReceiver
+
+# Build rule for target.
+testReceiver: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testReceiver
+.PHONY : testReceiver
+
+# fast build rule for target.
+testReceiver/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/build
+.PHONY : testReceiver/fast
+
 testDecoder.o: testDecoder.cpp.o
 .PHONY : testDecoder.o
 
@@ -165,6 +178,30 @@ testDecoder.s: testDecoder.cpp.s
 testDecoder.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testDecoder.dir/build.make CMakeFiles/testDecoder.dir/testDecoder.cpp.s
 .PHONY : testDecoder.cpp.s
+
+testReceiver.o: testReceiver.cpp.o
+.PHONY : testReceiver.o
+
+# target to build an object file
+testReceiver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.o
+.PHONY : testReceiver.cpp.o
+
+testReceiver.i: testReceiver.cpp.i
+.PHONY : testReceiver.i
+
+# target to preprocess a source file
+testReceiver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.i
+.PHONY : testReceiver.cpp.i
+
+testReceiver.s: testReceiver.cpp.s
+.PHONY : testReceiver.s
+
+# target to generate assembly for a file
+testReceiver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.s
+.PHONY : testReceiver.cpp.s
 
 testSender.o: testSender.cpp.o
 .PHONY : testSender.o
@@ -199,10 +236,14 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... testDecoder"
+	@echo "... testReceiver"
 	@echo "... testSender"
 	@echo "... testDecoder.o"
 	@echo "... testDecoder.i"
 	@echo "... testDecoder.s"
+	@echo "... testReceiver.o"
+	@echo "... testReceiver.i"
+	@echo "... testReceiver.s"
 	@echo "... testSender.o"
 	@echo "... testSender.i"
 	@echo "... testSender.s"

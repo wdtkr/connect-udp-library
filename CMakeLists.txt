@@ -20,5 +20,5 @@ target_link_libraries(testDecoder ${OpenCV_LIBS} uvgrtp)
 add_executable(testSender testSender.cpp)
 target_link_libraries(testSender ${OpenCV_LIBS} uvgrtp)
 
-# add_executable(testReceiver testReceiver.cpp)
-# target_link_libraries(testReceiver ${OpenCV_LIBS} uvgrtp)
+add_executable(testReceiver testReceiver.cpp)
+target_link_libraries(testReceiver ${OpenCV_LIBS} uvgrtp)

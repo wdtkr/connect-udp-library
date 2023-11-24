@@ -1,6 +1,7 @@
 #include <dlfcn.h>
 #include <iostream>
 #include <cstring>
+#include <fstream>
 #include <opencv2/opencv.hpp>
 #include "/Users/takeru/Downloads/openh264-2.3.1/codec/api/wels/codec_api.h"
 #include "/Users/takeru/Documents/GitHub/uvgRTP/include/uvgrtp/lib.hh"
@@ -19,8 +20,9 @@ int main()
     uvgrtp::session *sess = ctx.create_session(LOCAL_ADDRESS);
 
     // RTPストリームを作成（受信専用）
-    int flags = RCE_RECEIVE_ONLY | RCE_FRAGMENT_GENERIC;
-    uvgrtp::media_stream *h264 = sess->create_stream(LOCAL_PORT, RTP_FORMAT_H264, flags);
+    int receive_flags = RCE_RECEIVE_ONLY | RCE_NO_H26X_PREPEND_SC;
+    uvgrtp::media_stream *h264 = sess->create_stream(LOCAL_PORT, RTP_FORMAT_H264, receive_flags);
+    h264->configure_ctx(RCC_RING_BUFFER_SIZE, 40000000);
 
     // OpenH264デコーダの初期化
     void *handle = dlopen("../libopenh264-2.3.1-mac-arm64.dylib", RTLD_LAZY);
@@ -52,16 +54,16 @@ int main()
     while (true)
     {
         // uvgRTPからデータを受信
-        frame::rtp_frame *frame = h264->pull_frame();
+        frame::rtp_frame *frame = h264->pull_frame(1000);
         if (!frame)
         {
             cerr << "RTPフレームの受信に失敗しました" << endl;
             continue;
         }
-        else
-        {
-            cout << "RTPフレームの受信に成功しました" << endl;
-        }
+        // else
+        // {
+        //     cout << "フレームの受信に成功" << &frame << endl;
+        // }
 
         // デコード処理
         SBufferInfo bufInfo;
@@ -69,21 +71,49 @@ int main()
         unsigned char *pData[3] = {nullptr, nullptr, nullptr};
 
         int ret = decoder->DecodeFrameNoDelay(frame->payload, frame->payload_len, pData, &bufInfo);
-        // uvgrtp::frame::dealloc_frame(frame);
-
         if (ret == 0 && bufInfo.iBufferStatus == 1)
         {
-            Mat yuvImg(bufInfo.UsrData.sSystemBuffer.iHeight * 3 / 2, bufInfo.UsrData.sSystemBuffer.iWidth, CV_8UC1, pData);
-            Mat rgbImg;
-            cvtColor(yuvImg, rgbImg, COLOR_YUV2BGR_I420);
+            int width = bufInfo.UsrData.sSystemBuffer.iWidth;
+            int height = bufInfo.UsrData.sSystemBuffer.iHeight;
+            int yStride = bufInfo.UsrData.sSystemBuffer.iStride[0];
+            int uvStride = bufInfo.UsrData.sSystemBuffer.iStride[1];
+
+            // Y成分のMatオブジェクトを作成
+            cv::Mat yMat(height, width, CV_8UC1, pData[0], yStride);
+
+            // U成分とV成分のMatオブジェクトを作成
+            cv::Mat uMat(height / 2, width / 2, CV_8UC1, pData[1], uvStride);
+            cv::Mat vMat(height / 2, width / 2, CV_8UC1, pData[2], uvStride);
+
+            // YUV420p形式に合わせてY, U, Vデータを配置
+            cv::Mat yuvImg(height + height / 2, width, CV_8UC1);
+            yMat.copyTo(yuvImg(cv::Rect(0, 0, width, height)));
+
+            // U成分とV成分の配置を修正
+            // U成分を配置
+            cv::Mat uPart(uMat.size(), CV_8UC1, yuvImg.data + height * width);
+            uMat.copyTo(uPart);
+
+            // V成分を配置
+            cv::Mat vPart(vMat.size(), CV_8UC1, yuvImg.data + height * width + (height / 2) * (width / 2));
+            vMat.copyTo(vPart);
+
+            // YUVからRGBへ変換
+            cv::Mat rgbImg;
+            cv::cvtColor(yuvImg, rgbImg, cv::COLOR_YUV2BGR_I420);
+
             imshow("Decoded Frame", rgbImg);
-            if (waitKey(30) >= 0)
-                break; // キー入力で終了
         }
-        else
+
+        // ウィンドウを更新
+        int key = waitKey(1);
+        if (key == 'q' || key == 'Q') // 'q' または 'Q' が押された場合、ループを抜ける
         {
-            cout << "デコード失敗" << endl;
+            break;
         }
+
+        // RTPフレームのメモリを解放
+        uvgrtp::frame::dealloc_frame(frame);
     }
 
     // デコーダの解放

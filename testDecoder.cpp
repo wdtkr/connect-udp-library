@@ -8,6 +8,8 @@
 using namespace std;
 using namespace cv;
 
+int test = 0;
+
 // NALユニットの開始コードを検出する関数
 vector<size_t> FindNALUnits(const vector<uint8_t> &buffer)
 {
@@ -20,6 +22,27 @@ vector<size_t> FindNALUnits(const vector<uint8_t> &buffer)
         }
     }
     return nalStarts;
+}
+
+vector<uint8_t> readFile(const string &filename)
+{
+    ifstream file(filename, ios::binary);
+    return vector<uint8_t>(istreambuf_iterator<char>(file), {});
+}
+
+void logNALUnitTypes(const vector<uint8_t> &buffer)
+{
+    for (size_t i = 0; i < buffer.size(); ++i)
+    {
+        if (i + 4 < buffer.size() &&
+            buffer[i] == 0x00 && buffer[i + 1] == 0x00 &&
+            buffer[i + 2] == 0x00 && buffer[i + 3] == 0x01)
+        {
+            uint8_t nal_unit_type = buffer[i + 4] & 0x1F;
+            cout << "NAL Unit Type: " << static_cast<int>(nal_unit_type) << endl;
+            i += 4; // スキップして次のNALユニットを探します
+        }
+    }
 }
 
 int main()
@@ -47,7 +70,7 @@ int main()
     decoder->Initialize(&decParam);
 
     // ファイルを開く
-    ifstream videoFile("output2.264", ios::in | ios::binary);
+    ifstream videoFile("receive.264", ios::in | ios::binary);
     if (!videoFile.is_open())
     {
         cerr << "ファイルを開けません" << endl;
@@ -57,6 +80,8 @@ int main()
     // ファイルの内容を読み込む
     vector<uint8_t> buffer((istreambuf_iterator<char>(videoFile)), istreambuf_iterator<char>());
     videoFile.close();
+
+    logNALUnitTypes(buffer);
 
     // NALユニットの境界を見つける
     vector<size_t> nalStarts = FindNALUnits(buffer);
@@ -77,6 +102,25 @@ int main()
         SBufferInfo bufInfo;
         memset(&bufInfo, 0, sizeof(SBufferInfo));
         unsigned char *pData[3] = {nullptr, nullptr, nullptr};
+
+        cout << "&buffer[nalStarts[i]] : " << buffer[nalStarts[i]] << ",,, size : " << size << ",,, pData : " << pData << " ,,, bufInfo : " << &bufInfo << endl;
+
+        // 受信したペイロードの最初の数バイトをログ出力（デバッグ用）
+        // int min_len = std::min(static_cast<size_t>(10), size);
+        // cout << "First bytes of payload: ";
+        // for (size_t j = 0; j < min_len; ++j)
+        //     cout << hex << (int)buffer[nalStarts[i] + j] << " ";
+        // cout << dec << endl;
+
+        if (test == 10)
+        {
+            cout << "First bytes of payload: ";
+            for (size_t j = 0; j < size; ++j)
+                cout << hex << (int)buffer[nalStarts[i] + j] << " ";
+            cout << dec << endl;
+        }
+
+        test += 1;
 
         int ret = decoder->DecodeFrameNoDelay(&buffer[nalStarts[i]], size, pData, &bufInfo);
         if (ret == 0 && bufInfo.iBufferStatus == 1)
@@ -111,8 +155,12 @@ int main()
             cv::cvtColor(yuvImg, rgbImg, cv::COLOR_YUV2BGR_I420);
 
             imshow("Decoded Frame", rgbImg);
-            waitKey(20);
+            waitKey(1000 / 33);
         }
+        // else
+        // {
+        //     cerr << "エラーコード ret： " << ret << " ,,, bufInfo.iBufferStatus： " << bufInfo.iBufferStatus << endl;
+        // }
     }
 
     // デコーダの終了処理

@@ -16,8 +16,13 @@ using namespace cv;
 constexpr char REMOTE_ADDRESS[] = "127.0.0.1";
 constexpr uint16_t REMOTE_PORT = 30002;
 
+int width = 1920;
+int height = 1080;
+// int width = 640;
+// int height = 480;
+
 // 1920x1080 ピクセルのフレームのための推定バッファサイズ、YUV 420 フォーマットの場合
-size_t bufferSize = 1920 * 1080 * 3 / 2;
+size_t bufferSize = width * height * 3 / 2;
 
 int main()
 {
@@ -28,6 +33,9 @@ int main()
         cerr << "カメラが開けません" << endl;
         return -1;
     }
+
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, width);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, height);
 
     // OpenH264エンコーダの初期化
     void *handle = dlopen("../libopenh264-2.3.1-mac-arm64.dylib", RTLD_LAZY);
@@ -51,10 +59,8 @@ int main()
     memset(&param, 0, sizeof(SEncParamBase));
     param.iUsageType = CAMERA_VIDEO_REAL_TIME;
     param.fMaxFrameRate = 30;
-    // param.iPicWidth = 1920;
-    // param.iPicHeight = 1080;
-    param.iPicWidth = 640;
-    param.iPicHeight = 480;
+    param.iPicWidth = width;
+    param.iPicHeight = height;
     param.iTargetBitrate = 5000000;
     if (encoder->Initialize(&param) != 0)
     {
@@ -68,29 +74,25 @@ int main()
     // uvgRTPの初期化
     uvgrtp::context ctx;
     uvgrtp::session *sess = ctx.create_session(REMOTE_ADDRESS);
-    int send_flags = RCE_FRAGMENT_GENERIC | RCE_SEND_ONLY;
+    int send_flags = RCE_PACE_FRAGMENT_SENDING | RCE_SEND_ONLY;
     uvgrtp::media_stream *strm = sess->create_stream(REMOTE_PORT, RTP_FORMAT_H264, send_flags);
-    strm->configure_ctx(RCC_MTU_SIZE, 1500);
+    strm->configure_ctx(RCC_MTU_SIZE, 1400);
 
-    // test
-    ofstream outFile("output.264", ios::out | ios::binary);
-    bool flag = true;
-    std::thread t([&flag]()
-                  {
-        std::this_thread::sleep_for(std::chrono::seconds(5));
-        flag = false;
-        std::cout << "フラグの状態を変更しました: " << flag << std::endl; });
+    // bool flag = true;
+    // std::thread t([&flag]()
+    //               {
+    //     std::this_thread::sleep_for(std::chrono::seconds(5));
+    //     flag = false;
+    //     std::cout << "フラグの状態を変更しました: " << flag << std::endl; });
 
     Mat frame, yuv;
-    while (flag)
+    while (true)
     {
         cap >> frame;
         if (frame.empty())
             break;
 
         cvtColor(frame, yuv, COLOR_BGR2YUV_I420);
-
-        // cout << "エンコード前：" << frame << endl;
 
         SSourcePicture pic;
         memset(&pic, 0, sizeof(SSourcePicture));
@@ -111,14 +113,11 @@ int main()
             continue;
         }
 
-        // cout << "レイヤー数: " << info.iLayerNum << endl;
-
         // エンコードされたデータをRTPで送信
         for (int layer = 0; layer < info.iLayerNum; ++layer)
         {
             int layerSize = 0;
             SLayerBSInfo &layerInfo = info.sLayerInfo[layer];
-            // cout << "レイヤー " << layer << "、NALユニット数: " << layerInfo.iNalCount << endl;
 
             for (int nal = 0; nal < layerInfo.iNalCount; ++nal)
             {
@@ -128,23 +127,17 @@ int main()
                     // エラー処理
                 }
 
-                // cout << "エンコード後!：" << reinterpret_cast<char *>(layerInfo.pBsBuf + layerSize) << endl;
-                // cout << "NALユニットのサイズ: " << layerInfo.pNalLengthInByte[nal] << endl;
-
                 if (layerInfo.pNalLengthInByte[nal] + layerSize > bufferSize)
                 { // bufferSize はエンコーディングバッファのサイズ
                     cerr << "NALユニットのサイズがバッファサイズを超えています。" << endl;
                     // エラー処理
                 }
 
-                // cout << "送信データのアドレス: " << static_cast<void *>(layerInfo.pBsBuf + layerSize) << endl;
-
-                if (strm->push_frame(layerInfo.pBsBuf + layerSize, layerInfo.pNalLengthInByte[nal], RCE_SEND_ONLY) != RTP_OK)
+                if (strm->push_frame(layerInfo.pBsBuf + layerSize, layerInfo.pNalLengthInByte[nal], RTP_NO_H26X_SCL) != RTP_OK)
                 {
                     cerr << "RTPフレームの送信に失敗しました" << endl;
                 }
-                // test
-                outFile.write(reinterpret_cast<char *>(layerInfo.pBsBuf + layerSize), layerInfo.pNalLengthInByte[nal]);
+
                 layerSize += layerInfo.pNalLengthInByte[nal];
             }
         }
@@ -159,9 +152,6 @@ int main()
 
     sess->destroy_stream(strm);
     ctx.destroy_session(sess);
-
-    // test
-    outFile.close();
 
     return 0;
 }
