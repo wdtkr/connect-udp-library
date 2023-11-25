@@ -63,6 +63,7 @@ CMAKE_BINARY_DIR = /Users/takeru/Documents/GitHub/connect-udp-library/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/testEncoder.dir/all
 all: CMakeFiles/testDecoder.dir/all
 all: CMakeFiles/testSender.dir/all
 all: CMakeFiles/testReceiver.dir/all
@@ -73,10 +74,37 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/testEncoder.dir/clean
 clean: CMakeFiles/testDecoder.dir/clean
 clean: CMakeFiles/testSender.dir/clean
 clean: CMakeFiles/testReceiver.dir/clean
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/testEncoder.dir
+
+# All Build rule for target.
+CMakeFiles/testEncoder.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testEncoder.dir/build.make CMakeFiles/testEncoder.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testEncoder.dir/build.make CMakeFiles/testEncoder.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=3,4 "Built target testEncoder"
+.PHONY : CMakeFiles/testEncoder.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/testEncoder.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/testEncoder.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles 0
+.PHONY : CMakeFiles/testEncoder.dir/rule
+
+# Convenience name for target.
+testEncoder: CMakeFiles/testEncoder.dir/rule
+.PHONY : testEncoder
+
+# clean rule for target.
+CMakeFiles/testEncoder.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testEncoder.dir/build.make CMakeFiles/testEncoder.dir/clean
+.PHONY : CMakeFiles/testEncoder.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/testDecoder.dir
@@ -111,7 +139,7 @@ CMakeFiles/testDecoder.dir/clean:
 CMakeFiles/testSender.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=5,6 "Built target testSender"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=7,8 "Built target testSender"
 .PHONY : CMakeFiles/testSender.dir/all
 
 # Build rule for subdir invocation for target.
@@ -137,7 +165,7 @@ CMakeFiles/testSender.dir/clean:
 CMakeFiles/testReceiver.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=3,4 "Built target testReceiver"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=5,6 "Built target testReceiver"
 .PHONY : CMakeFiles/testReceiver.dir/all
 
 # Build rule for subdir invocation for target.

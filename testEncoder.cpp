@@ -1,96 +1,137 @@
-#include <dlfcn.h>
 #include <iostream>
-#include <fstream>
 #include <vector>
-#include <iterator>
-#include <opencv2/opencv.hpp>
-#include "/Users/takeru/Downloads/openh264-2.3.1/codec/api/wels/codec_api.h"
+#include <fstream>
+#include <opus.h>
+#include <portaudio.h>
+
+#define SAMPLE_RATE 48000 // サンプリングレートを定義 (48kHz)
+#define CHANNELS 1        // チャンネル数を定義 (モノラル)
+#define FRAME_SIZE 960    // Opusフレームサイズを定義
+#define MAX_FRAME_SIZE 6 * 960
+#define BITRATE 64000 // ビットレートを定義 (64kbps)
+#define APPLICATION OPUS_APPLICATION_AUDIO
 
 using namespace std;
-using namespace cv;
 
-// NALユニットの開始コードを検出する関数
-vector<size_t> FindNALUStartCodes(const vector<uint8_t> &data)
+// レコーディングのコールバック関数
+static int recordCallback(const void *inputBuffer, void *outputBuffer,
+                          unsigned long framesPerBuffer,
+                          const PaStreamCallbackTimeInfo *timeInfo,
+                          PaStreamCallbackFlags statusFlags,
+                          void *userData)
 {
-    vector<size_t> positions;
-    for (size_t i = 0; i < data.size() - 4; ++i)
+    vector<opus_int16> *recordedSamples = (vector<opus_int16> *)userData;
+    const opus_int16 *input = (const opus_int16 *)inputBuffer;
+
+    if (inputBuffer == NULL)
     {
-        if (data[i] == 0x00 && data[i + 1] == 0x00 && data[i + 2] == 0x00 && data[i + 3] == 0x01)
-        {
-            positions.push_back(i);
-        }
+        return paContinue; // 入力バッファが空の場合は続行
     }
-    return positions;
+
+    // 録音されたサンプルをベクタに追加
+    recordedSamples->insert(recordedSamples->end(), input, input + framesPerBuffer * CHANNELS);
+    return paContinue; // コールバックを続行
 }
 
 int main()
 {
-    // ライブラリの読み込み
-    void *handle = dlopen("../libopenh264-2.3.1-mac-arm64.dylib", RTLD_LAZY);
-    if (!handle)
+    PaError paErr;
+    OpusEncoder *encoder;
+    int error;
+
+    // PortAudioの初期化
+    paErr = Pa_Initialize();
+    if (paErr != paNoError)
     {
-        cerr << "ライブラリの読み込みに失敗: " << dlerror() << endl;
-        return -1;
+        cerr << "PortAudio error: " << Pa_GetErrorText(paErr) << endl;
+        return 1; // 初期化エラー
     }
 
-    // デコーダの作成
-    typedef int (*CreateDecoderFunc)(ISVCDecoder **);
-    CreateDecoderFunc createDecoder = (CreateDecoderFunc)dlsym(handle, "WelsCreateDecoder");
-    ISVCDecoder *decoder = nullptr;
-    if (createDecoder(&decoder) != 0 || decoder == nullptr)
+    vector<opus_int16> recordedSamples;
+
+    // ストリームの開設
+    PaStream *stream;
+    paErr = Pa_OpenDefaultStream(&stream, CHANNELS, 0, paInt16, SAMPLE_RATE, FRAME_SIZE, recordCallback, &recordedSamples);
+    if (paErr != paNoError)
     {
-        cerr << "デコーダの作成に失敗" << endl;
-        return -1;
+        cerr << "PortAudio error: " << Pa_GetErrorText(paErr) << endl;
+        return 1; // ストリーム開設エラー
     }
 
-    // デコーダの初期化
-    SDecodingParam decParam = {0};
-    decParam.sVideoProperty.eVideoBsType = VIDEO_BITSTREAM_DEFAULT;
-    if (decoder->Initialize(&decParam) != 0)
+    // ストリームの開始
+    paErr = Pa_StartStream(stream);
+    if (paErr != paNoError)
     {
-        cerr << "デコーダの初期化に失敗" << endl;
-        return -1;
+        cerr << "PortAudio error: " << Pa_GetErrorText(paErr) << endl;
+        return 1; // ストリーム開始エラー
     }
 
-    namedWindow("Decoded Frame", WINDOW_AUTOSIZE);
-
-    // ファイルを読み込む
-    ifstream videoFile("output.264", ios::in | ios::binary);
-    vector<uint8_t> videoData((istreambuf_iterator<char>(videoFile)), istreambuf_iterator<char>());
-    videoFile.close();
-
-    // NALユニットの開始位置を見つける
-    vector<size_t> nalStartPositions = FindNALUStartCodes(videoData);
-
-    // 各NALユニットをデコードする
-    for (size_t i = 0; i < nalStartPositions.size(); ++i)
+    // Opusエンコーダの初期化
+    encoder = opus_encoder_create(SAMPLE_RATE, CHANNELS, APPLICATION, &error);
+    if (error != OPUS_OK)
     {
-        size_t start = nalStartPositions[i];
-        size_t end = (i + 1 < nalStartPositions.size()) ? nalStartPositions[i + 1] : videoData.size();
-        size_t length = end - start;
+        cerr << "Failed to create an Opus encoder: " << opus_strerror(error) << endl;
+        return 1;
+    }
+    opus_encoder_ctl(encoder, OPUS_SET_BITRATE(BITRATE));
+    opus_encoder_ctl(encoder, OPUS_SET_COMPLEXITY(10));                          // 複雑度の設定
+    opus_encoder_ctl(encoder, OPUS_SET_BANDWIDTH(OPUS_BANDWIDTH_SUPERWIDEBAND)); // 帯域幅の設定
 
-        // デコード処理
-        SBufferInfo bufInfo;
-        memset(&bufInfo, 0, sizeof(SBufferInfo));
-        unsigned char *pData[3] = {nullptr, nullptr, nullptr};
+    cout << "Recording. Press Enter to stop." << endl;
+    getchar(); // Enterキーを押すまで録音
 
-        int rv = decoder->DecodeFrame2(&videoData[start], length, pData, &bufInfo);
-        if (rv == 0 && bufInfo.iBufferStatus == 1)
+    // ストリームの停止
+    paErr = Pa_StopStream(stream);
+    if (paErr != paNoError)
+    {
+        cerr << "PortAudio error: " << Pa_GetErrorText(paErr) << endl;
+        return 1; // ストリーム停止エラー
+    }
+
+    // ストリームのクローズ
+    paErr = Pa_CloseStream(stream);
+    if (paErr != paNoError)
+    {
+        cerr << "PortAudio error: " << Pa_GetErrorText(paErr) << endl;
+        return 1; // ストリームクローズエラー
+    }
+
+    // PortAudioの終了
+    Pa_Terminate();
+
+    // エンコーディングとファイルへの書き込み
+    vector<unsigned char> opusData(MAX_FRAME_SIZE);
+    int numBytes;
+
+    ofstream outputFile("output.opus", ios::binary);
+    if (!outputFile.is_open())
+    {
+        cerr << "Failed to open output file." << endl;
+        return 1;
+    }
+
+    // 録音データが十分に溜まるまで待機
+    while (recordedSamples.size() < FRAME_SIZE * CHANNELS)
+    {
+        Pa_Sleep(100);
+    }
+
+    // Opusエンコードしてファイルに書き込む
+    for (size_t i = 0; i + FRAME_SIZE * CHANNELS <= recordedSamples.size(); i += FRAME_SIZE * CHANNELS)
+    {
+        numBytes = opus_encode(encoder, &recordedSamples[i], FRAME_SIZE, opusData.data(), opusData.size());
+        if (numBytes < 0)
         {
-            Mat yuvImg(bufInfo.UsrData.sSystemBuffer.iHeight * 3 / 2, bufInfo.UsrData.sSystemBuffer.iWidth, CV_8UC1, pData[0]);
-            Mat rgbImg;
-            cvtColor(yuvImg, rgbImg, COLOR_YUV2BGR_I420);
-            imshow("Decoded Frame", rgbImg);
-            waitKey(30); // 30ms待って画面更新
+            cerr << "Opus encoding failed: " << opus_strerror(numBytes) << endl;
+            return 1;
         }
+        outputFile.write((const char *)opusData.data(), numBytes);
     }
 
-    // デコーダの終了処理
-    decoder->Uninitialize();
-    typedef void (*DestroyDecoderFunc)(ISVCDecoder *);
-    DestroyDecoderFunc destroyDecoder = (DestroyDecoderFunc)dlsym(handle, "WelsDestroyDecoder");
-    destroyDecoder(decoder);
-    dlclose(handle);
+    outputFile.close();
+    opus_encoder_destroy(encoder);
+
+    cout << "Recording finished and saved to 'output.opus'" << endl;
 
     return 0;
 }

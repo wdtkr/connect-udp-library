@@ -1,3 +1,4 @@
+/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/testEncoder.dir
 /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/testDecoder.dir
 /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/testSender.dir
 /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/testReceiver.dir

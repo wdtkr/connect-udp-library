@@ -73,6 +73,12 @@
         "map": "cpp",
         "queue": "cpp",
         "set": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "any": "cpp",
+        "condition_variable": "cpp",
+        "forward_list": "cpp",
+        "unordered_set": "cpp",
+        "numeric": "cpp",
+        "random": "cpp"
     }
 }

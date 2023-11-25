@@ -127,6 +127,10 @@ testEncoder: /opt/homebrew/lib/libopencv_wechat_qrcode.4.8.1.dylib
 testEncoder: /opt/homebrew/lib/libopencv_xfeatures2d.4.8.1.dylib
 testEncoder: /opt/homebrew/lib/libopencv_xobjdetect.4.8.1.dylib
 testEncoder: /opt/homebrew/lib/libopencv_xphoto.4.8.1.dylib
+testEncoder: /opt/homebrew/lib/libportaudio.dylib
+testEncoder: /opt/homebrew/lib/libsndfile.dylib
+testEncoder: /opt/homebrew/lib/libopus.dylib
+testEncoder: /opt/homebrew/lib/libopusfile.dylib
 testEncoder: /opt/homebrew/lib/libopencv_shape.4.8.1.dylib
 testEncoder: /opt/homebrew/lib/libopencv_highgui.4.8.1.dylib
 testEncoder: /opt/homebrew/lib/libopencv_datasets.4.8.1.dylib

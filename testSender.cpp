@@ -8,7 +8,7 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/videoio.hpp>
 #include "/Users/takeru/Downloads/openh264-2.3.1/codec/api/wels/codec_api.h"
-#include "/Users/takeru/Documents/GitHub/uvgRTP/include/uvgrtp/lib.hh"
+#include "/Users/takeru/Documents/GitHub/connect-udp-library/uvgRTP/include/uvgrtp/lib.hh"
 
 using namespace std;
 using namespace cv;
@@ -18,8 +18,6 @@ constexpr uint16_t REMOTE_PORT = 30002;
 
 int width = 1920;
 int height = 1080;
-// int width = 640;
-// int height = 480;
 
 // 1920x1080 ピクセルのフレームのための推定バッファサイズ、YUV 420 フォーマットの場合
 size_t bufferSize = width * height * 3 / 2;
