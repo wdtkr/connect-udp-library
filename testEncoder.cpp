@@ -1,137 +1,103 @@
 #include <iostream>
 #include <vector>
-#include <fstream>
+#include <queue>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 #include <opus.h>
 #include <portaudio.h>
+#include "/Users/takeru/Documents/GitHub/connect-udp-library/uvgRTP/include/uvgrtp/lib.hh"
 
-#define SAMPLE_RATE 48000 // サンプリングレートを定義 (48kHz)
-#define CHANNELS 1        // チャンネル数を定義 (モノラル)
-#define FRAME_SIZE 960    // Opusフレームサイズを定義
-#define MAX_FRAME_SIZE 6 * 960
-#define BITRATE 64000 // ビットレートを定義 (64kbps)
-#define APPLICATION OPUS_APPLICATION_AUDIO
+#define SAMPLE_RATE 48000
+#define CHANNELS 1
+#define FRAME_SIZE 960
+#define MAX_PACKET_SIZE 1500
 
-using namespace std;
+constexpr char REMOTE_ADDRESS[] = "127.0.0.1";
+constexpr uint16_t REMOTE_PORT = 30004;
 
-// レコーディングのコールバック関数
+std::queue<std::vector<opus_int16>> sampleQueue;
+std::mutex queueMutex;
+std::condition_variable cv;
+bool stopSignal = false;
+
+// 録音のコールバック関数
 static int recordCallback(const void *inputBuffer, void *outputBuffer,
                           unsigned long framesPerBuffer,
                           const PaStreamCallbackTimeInfo *timeInfo,
                           PaStreamCallbackFlags statusFlags,
                           void *userData)
 {
-    vector<opus_int16> *recordedSamples = (vector<opus_int16> *)userData;
-    const opus_int16 *input = (const opus_int16 *)inputBuffer;
-
-    if (inputBuffer == NULL)
+    if (inputBuffer != NULL)
     {
-        return paContinue; // 入力バッファが空の場合は続行
+        const opus_int16 *input = static_cast<const opus_int16 *>(inputBuffer);
+        std::vector<opus_int16> samples(input, input + framesPerBuffer * CHANNELS);
+
+        std::lock_guard<std::mutex> lock(queueMutex);
+        sampleQueue.push(samples);
+        cv.notify_one();
+    }
+    return paContinue;
+}
+
+void encodeAndSend()
+{
+    // Opusエンコーダーの初期化
+    int opusErr;
+    OpusEncoder *encoder = opus_encoder_create(SAMPLE_RATE, CHANNELS, OPUS_APPLICATION_VOIP, &opusErr);
+
+    // uvgRTPの初期化
+    uvgrtp::context ctx;
+    uvgrtp::session *sess = ctx.create_session(REMOTE_ADDRESS);
+    auto strm = sess->create_stream(REMOTE_PORT, RTP_FORMAT_OPUS, RCE_SEND_ONLY);
+    strm->configure_ctx(RCC_MTU_SIZE, 1400);
+
+    while (true)
+    {
+        std::unique_lock<std::mutex> lock(queueMutex);
+        cv.wait(lock, []
+                { return !sampleQueue.empty() || stopSignal; });
+
+        if (stopSignal && sampleQueue.empty())
+            break;
+
+        auto samples = sampleQueue.front();
+        sampleQueue.pop();
+        lock.unlock();
+
+        std::vector<unsigned char> opusData(MAX_PACKET_SIZE);
+        int numBytes = opus_encode(encoder, samples.data(), FRAME_SIZE, opusData.data(), opusData.size());
+        strm->push_frame(opusData.data(), numBytes, RTP_NO_FLAGS);
     }
 
-    // 録音されたサンプルをベクタに追加
-    recordedSamples->insert(recordedSamples->end(), input, input + framesPerBuffer * CHANNELS);
-    return paContinue; // コールバックを続行
+    // クリーンアップ
+    opus_encoder_destroy(encoder);
+    sess->destroy_stream(strm);
+    ctx.destroy_session(sess);
 }
 
 int main()
 {
-    PaError paErr;
-    OpusEncoder *encoder;
-    int error;
-
     // PortAudioの初期化
-    paErr = Pa_Initialize();
-    if (paErr != paNoError)
-    {
-        cerr << "PortAudio error: " << Pa_GetErrorText(paErr) << endl;
-        return 1; // 初期化エラー
-    }
+    Pa_Initialize();
+    PaStream *recordStream;
+    Pa_OpenDefaultStream(&recordStream, CHANNELS, 0, paInt16, SAMPLE_RATE, FRAME_SIZE, recordCallback, nullptr);
+    Pa_StartStream(recordStream);
 
-    vector<opus_int16> recordedSamples;
+    std::thread sendThread(encodeAndSend);
 
-    // ストリームの開設
-    PaStream *stream;
-    paErr = Pa_OpenDefaultStream(&stream, CHANNELS, 0, paInt16, SAMPLE_RATE, FRAME_SIZE, recordCallback, &recordedSamples);
-    if (paErr != paNoError)
-    {
-        cerr << "PortAudio error: " << Pa_GetErrorText(paErr) << endl;
-        return 1; // ストリーム開設エラー
-    }
+    std::cout << "Recording and sending... Press Enter to stop." << std::endl;
+    std::cin.get();
+    stopSignal = true;
+    cv.notify_one();
 
-    // ストリームの開始
-    paErr = Pa_StartStream(stream);
-    if (paErr != paNoError)
-    {
-        cerr << "PortAudio error: " << Pa_GetErrorText(paErr) << endl;
-        return 1; // ストリーム開始エラー
-    }
+    sendThread.join();
 
-    // Opusエンコーダの初期化
-    encoder = opus_encoder_create(SAMPLE_RATE, CHANNELS, APPLICATION, &error);
-    if (error != OPUS_OK)
-    {
-        cerr << "Failed to create an Opus encoder: " << opus_strerror(error) << endl;
-        return 1;
-    }
-    opus_encoder_ctl(encoder, OPUS_SET_BITRATE(BITRATE));
-    opus_encoder_ctl(encoder, OPUS_SET_COMPLEXITY(10));                          // 複雑度の設定
-    opus_encoder_ctl(encoder, OPUS_SET_BANDWIDTH(OPUS_BANDWIDTH_SUPERWIDEBAND)); // 帯域幅の設定
-
-    cout << "Recording. Press Enter to stop." << endl;
-    getchar(); // Enterキーを押すまで録音
-
-    // ストリームの停止
-    paErr = Pa_StopStream(stream);
-    if (paErr != paNoError)
-    {
-        cerr << "PortAudio error: " << Pa_GetErrorText(paErr) << endl;
-        return 1; // ストリーム停止エラー
-    }
-
-    // ストリームのクローズ
-    paErr = Pa_CloseStream(stream);
-    if (paErr != paNoError)
-    {
-        cerr << "PortAudio error: " << Pa_GetErrorText(paErr) << endl;
-        return 1; // ストリームクローズエラー
-    }
-
-    // PortAudioの終了
+    // 録音用ストリームの停止とクリーンアップ
+    Pa_StopStream(recordStream);
+    Pa_CloseStream(recordStream);
     Pa_Terminate();
 
-    // エンコーディングとファイルへの書き込み
-    vector<unsigned char> opusData(MAX_FRAME_SIZE);
-    int numBytes;
-
-    ofstream outputFile("output.opus", ios::binary);
-    if (!outputFile.is_open())
-    {
-        cerr << "Failed to open output file." << endl;
-        return 1;
-    }
-
-    // 録音データが十分に溜まるまで待機
-    while (recordedSamples.size() < FRAME_SIZE * CHANNELS)
-    {
-        Pa_Sleep(100);
-    }
-
-    // Opusエンコードしてファイルに書き込む
-    for (size_t i = 0; i + FRAME_SIZE * CHANNELS <= recordedSamples.size(); i += FRAME_SIZE * CHANNELS)
-    {
-        numBytes = opus_encode(encoder, &recordedSamples[i], FRAME_SIZE, opusData.data(), opusData.size());
-        if (numBytes < 0)
-        {
-            cerr << "Opus encoding failed: " << opus_strerror(numBytes) << endl;
-            return 1;
-        }
-        outputFile.write((const char *)opusData.data(), numBytes);
-    }
-
-    outputFile.close();
-    opus_encoder_destroy(encoder);
-
-    cout << "Recording finished and saved to 'output.opus'" << endl;
-
+    std::cout << "Recording and sending finished." << std::endl;
     return 0;
 }

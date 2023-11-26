@@ -1,6 +1,4 @@
-/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/testEncoder.dir
-/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/testDecoder.dir
-/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/testSender.dir
-/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/testReceiver.dir
+/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/mediaSender.dir
+/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/mediaReceiver.dir
 /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/edit_cache.dir
 /Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles/rebuild_cache.dir

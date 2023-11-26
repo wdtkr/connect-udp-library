@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/takeru/Documents/GitHub/connect-udp-library/testSender.cpp" "CMakeFiles/testSender.dir/testSender.o" "gcc" "CMakeFiles/testSender.dir/testSender.o.d"
+  "/Users/takeru/Documents/GitHub/connect-udp-library/mediaReceiver.cpp" "CMakeFiles/mediaReceiver.dir/mediaReceiver.cpp.o" "gcc" "CMakeFiles/mediaReceiver.dir/mediaReceiver.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/testEncoder.dir/testEncoder.cpp.o"
-  "CMakeFiles/testEncoder.dir/testEncoder.cpp.o.d"
+  "CMakeFiles/testEncoder.dir/testEncoder.o"
+  "CMakeFiles/testEncoder.dir/testEncoder.o.d"
   "testEncoder"
   "testEncoder.pdb"
 )

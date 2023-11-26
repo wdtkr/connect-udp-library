@@ -69,28 +69,28 @@ include CMakeFiles/testEncoder.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/testEncoder.dir/flags.make
 
-CMakeFiles/testEncoder.dir/testEncoder.cpp.o: CMakeFiles/testEncoder.dir/flags.make
-CMakeFiles/testEncoder.dir/testEncoder.cpp.o: /Users/takeru/Documents/GitHub/connect-udp-library/testEncoder.cpp
-CMakeFiles/testEncoder.dir/testEncoder.cpp.o: CMakeFiles/testEncoder.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/testEncoder.dir/testEncoder.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/testEncoder.dir/testEncoder.cpp.o -MF CMakeFiles/testEncoder.dir/testEncoder.cpp.o.d -o CMakeFiles/testEncoder.dir/testEncoder.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/testEncoder.cpp
+CMakeFiles/testEncoder.dir/testEncoder.o: CMakeFiles/testEncoder.dir/flags.make
+CMakeFiles/testEncoder.dir/testEncoder.o: /Users/takeru/Documents/GitHub/connect-udp-library/testEncoder.cpp
+CMakeFiles/testEncoder.dir/testEncoder.o: CMakeFiles/testEncoder.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/testEncoder.dir/testEncoder.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/testEncoder.dir/testEncoder.o -MF CMakeFiles/testEncoder.dir/testEncoder.o.d -o CMakeFiles/testEncoder.dir/testEncoder.o -c /Users/takeru/Documents/GitHub/connect-udp-library/testEncoder.cpp
 
-CMakeFiles/testEncoder.dir/testEncoder.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/testEncoder.dir/testEncoder.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/takeru/Documents/GitHub/connect-udp-library/testEncoder.cpp > CMakeFiles/testEncoder.dir/testEncoder.cpp.i
+CMakeFiles/testEncoder.dir/testEncoder.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/testEncoder.dir/testEncoder.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/takeru/Documents/GitHub/connect-udp-library/testEncoder.cpp > CMakeFiles/testEncoder.dir/testEncoder.i
 
-CMakeFiles/testEncoder.dir/testEncoder.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/testEncoder.dir/testEncoder.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/takeru/Documents/GitHub/connect-udp-library/testEncoder.cpp -o CMakeFiles/testEncoder.dir/testEncoder.cpp.s
+CMakeFiles/testEncoder.dir/testEncoder.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/testEncoder.dir/testEncoder.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/takeru/Documents/GitHub/connect-udp-library/testEncoder.cpp -o CMakeFiles/testEncoder.dir/testEncoder.s
 
 # Object files for target testEncoder
 testEncoder_OBJECTS = \
-"CMakeFiles/testEncoder.dir/testEncoder.cpp.o"
+"CMakeFiles/testEncoder.dir/testEncoder.o"
 
 # External object files for target testEncoder
 testEncoder_EXTERNAL_OBJECTS =
 
-testEncoder: CMakeFiles/testEncoder.dir/testEncoder.cpp.o
+testEncoder: CMakeFiles/testEncoder.dir/testEncoder.o
 testEncoder: CMakeFiles/testEncoder.dir/build.make
 testEncoder: /opt/homebrew/lib/libopencv_gapi.4.8.1.dylib
 testEncoder: /opt/homebrew/lib/libopencv_stitching.4.8.1.dylib

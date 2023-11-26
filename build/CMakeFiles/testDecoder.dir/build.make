@@ -69,28 +69,28 @@ include CMakeFiles/testDecoder.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/testDecoder.dir/flags.make
 
-CMakeFiles/testDecoder.dir/testDecoder.cpp.o: CMakeFiles/testDecoder.dir/flags.make
-CMakeFiles/testDecoder.dir/testDecoder.cpp.o: /Users/takeru/Documents/GitHub/connect-udp-library/testDecoder.cpp
-CMakeFiles/testDecoder.dir/testDecoder.cpp.o: CMakeFiles/testDecoder.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/testDecoder.dir/testDecoder.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/testDecoder.dir/testDecoder.cpp.o -MF CMakeFiles/testDecoder.dir/testDecoder.cpp.o.d -o CMakeFiles/testDecoder.dir/testDecoder.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/testDecoder.cpp
+CMakeFiles/testDecoder.dir/testDecoder.o: CMakeFiles/testDecoder.dir/flags.make
+CMakeFiles/testDecoder.dir/testDecoder.o: /Users/takeru/Documents/GitHub/connect-udp-library/testDecoder.cpp
+CMakeFiles/testDecoder.dir/testDecoder.o: CMakeFiles/testDecoder.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/takeru/Documents/GitHub/connect-udp-library/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/testDecoder.dir/testDecoder.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/testDecoder.dir/testDecoder.o -MF CMakeFiles/testDecoder.dir/testDecoder.o.d -o CMakeFiles/testDecoder.dir/testDecoder.o -c /Users/takeru/Documents/GitHub/connect-udp-library/testDecoder.cpp
 
-CMakeFiles/testDecoder.dir/testDecoder.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/testDecoder.dir/testDecoder.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/takeru/Documents/GitHub/connect-udp-library/testDecoder.cpp > CMakeFiles/testDecoder.dir/testDecoder.cpp.i
+CMakeFiles/testDecoder.dir/testDecoder.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/testDecoder.dir/testDecoder.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/takeru/Documents/GitHub/connect-udp-library/testDecoder.cpp > CMakeFiles/testDecoder.dir/testDecoder.i
 
-CMakeFiles/testDecoder.dir/testDecoder.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/testDecoder.dir/testDecoder.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/takeru/Documents/GitHub/connect-udp-library/testDecoder.cpp -o CMakeFiles/testDecoder.dir/testDecoder.cpp.s
+CMakeFiles/testDecoder.dir/testDecoder.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/testDecoder.dir/testDecoder.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/takeru/Documents/GitHub/connect-udp-library/testDecoder.cpp -o CMakeFiles/testDecoder.dir/testDecoder.s
 
 # Object files for target testDecoder
 testDecoder_OBJECTS = \
-"CMakeFiles/testDecoder.dir/testDecoder.cpp.o"
+"CMakeFiles/testDecoder.dir/testDecoder.o"
 
 # External object files for target testDecoder
 testDecoder_EXTERNAL_OBJECTS =
 
-testDecoder: CMakeFiles/testDecoder.dir/testDecoder.cpp.o
+testDecoder: CMakeFiles/testDecoder.dir/testDecoder.o
 testDecoder: CMakeFiles/testDecoder.dir/build.make
 testDecoder: /opt/homebrew/lib/libopencv_gapi.4.8.1.dylib
 testDecoder: /opt/homebrew/lib/libopencv_stitching.4.8.1.dylib

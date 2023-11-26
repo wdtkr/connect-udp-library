@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/takeru/Documents/GitHub/connect-udp-library/testDecoder.cpp" "CMakeFiles/testDecoder.dir/testDecoder.cpp.o" "gcc" "CMakeFiles/testDecoder.dir/testDecoder.cpp.o.d"
+  "/Users/takeru/Documents/GitHub/connect-udp-library/testDecoder.cpp" "CMakeFiles/testDecoder.dir/testDecoder.o" "gcc" "CMakeFiles/testDecoder.dir/testDecoder.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
