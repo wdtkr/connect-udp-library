@@ -1,26 +1,16 @@
 #include <iostream>
 #include <vector>
-#include <thread>
-#include <mutex>
-#include <condition_variable>
-#include <opus.h>
-#include <portaudio.h>
 #include <dlfcn.h>
-#include <opencv2/opencv.hpp>
-#include <opencv2/core.hpp>
-#include <opencv2/imgcodecs.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/videoio.hpp>
+#include <opus.h>
+#include "mediaSender.hpp"
 #include "/Users/takeru/Downloads/openh264-2.3.1/codec/api/wels/codec_api.h"
 #include "/Users/takeru/Documents/GitHub/connect-udp-library/uvgRTP/include/uvgrtp/lib.hh"
 
 using namespace std;
-using namespace cv;
+using namespace uvgrtp;
 
-// グローバル変数と定数
+// 映像関連の定数
 constexpr char REMOTE_ADDRESS[] = "127.0.0.1";
-
-// ビデオ
 constexpr uint16_t VIDEO_REMOTE_PORT = 30002;
 const int width = 1920;
 const int height = 1080;
@@ -28,56 +18,23 @@ const int frameRate = 30;
 const int bitrate = 5000000;
 const int mtuSize = 1400;
 const int send_flags = RCE_PACE_FRAGMENT_SENDING | RCE_SEND_ONLY;
-int videoFormat = videoFormatI420;
-// フレームのための推定バッファサイズ
-size_t bufferSize = width * height * 3 / 2;
 
-// オーディオ
+// オーディオ関連の定数
 constexpr uint16_t AUDIO_REMOTE_PORT = 30004;
 constexpr int SAMPLE_RATE = 48000;
 constexpr int CHANNELS = 1;
 constexpr int FRAME_SIZE = 960;
 constexpr int MAX_PACKET_SIZE = 1500;
 
-mutex g_mutex;
-queue<vector<opus_int16>> sampleQueue;
-mutex queueMutex;
-condition_variable conditionVariable;
+ISVCEncoder *videoEncoder = nullptr;
+media_stream *videoStrm = nullptr;
 
-bool stopSignal = false;
+OpusEncoder *audioEncoder = nullptr;
+media_stream *audioStrm = nullptr;
 
-// 録音のコールバック関数
-static int recordCallback(const void *inputBuffer, void *outputBuffer,
-                          unsigned long framesPerBuffer,
-                          const PaStreamCallbackTimeInfo *timeInfo,
-                          PaStreamCallbackFlags statusFlags,
-                          void *userData)
+// ビデオデータ送信準備処理
+void preSendVideoData(unsigned char *data, int dataLength)
 {
-    if (inputBuffer != NULL)
-    {
-        const opus_int16 *input = static_cast<const opus_int16 *>(inputBuffer);
-        vector<opus_int16> samples(input, input + framesPerBuffer * CHANNELS);
-
-        lock_guard<mutex> lock(queueMutex);
-        sampleQueue.push(samples);
-        conditionVariable.notify_one();
-    }
-    return paContinue;
-}
-
-void sendVideo()
-{
-    // OpenCVの初期化
-    VideoCapture cap(1);
-    if (!cap.isOpened())
-    {
-        cerr << "カメラが開けません" << endl;
-        return;
-    }
-
-    cap.set(CAP_PROP_FRAME_WIDTH, width);
-    cap.set(CAP_PROP_FRAME_HEIGHT, height);
-
     // OpenH264エンコーダの初期化
     void *handle = dlopen("../libopenh264-2.3.1-mac-arm64.dylib", RTLD_LAZY);
     if (!handle)
@@ -88,14 +45,12 @@ void sendVideo()
 
     typedef int (*CreateEncoderFunc)(ISVCEncoder **);
     CreateEncoderFunc createEncoder = (CreateEncoderFunc)dlsym(handle, "WelsCreateSVCEncoder");
-    ISVCEncoder *encoder = nullptr;
-    if (createEncoder(&encoder) != 0 || encoder == nullptr)
+    if (createEncoder(&videoEncoder) != 0 || videoEncoder == nullptr)
     {
         cerr << "エンコーダの作成に失敗" << endl;
         return;
     }
 
-    // エンコーダの初期化パラメータ
     SEncParamBase param;
     memset(&param, 0, sizeof(SEncParamBase));
     param.iUsageType = CAMERA_VIDEO_REAL_TIME;
@@ -103,43 +58,39 @@ void sendVideo()
     param.iPicWidth = width;
     param.iPicHeight = height;
     param.iTargetBitrate = bitrate;
-    if (encoder->Initialize(&param) != 0)
+    if (videoEncoder->Initialize(&param) != 0)
     {
         cerr << "エンコーダの初期化に失敗" << endl;
         return;
     }
 
-    encoder->SetOption(ENCODER_OPTION_DATAFORMAT, &videoFormat);
+    int videoFormat = videoFormatI420;
+    videoEncoder->SetOption(ENCODER_OPTION_DATAFORMAT, &videoFormat);
 
     // uvgRTPの初期化
-    uvgrtp::context ctx;
-    uvgrtp::session *sess = ctx.create_session(REMOTE_ADDRESS);
-    uvgrtp::media_stream *strm = sess->create_stream(VIDEO_REMOTE_PORT, RTP_FORMAT_H264, send_flags);
-    strm->configure_ctx(RCC_MTU_SIZE, mtuSize);
+    context ctx;
+    session *sess = ctx.create_session(REMOTE_ADDRESS);
 
-    Mat frame, yuv;
+    // ここでエラー出るかも
+    videoStrm = sess->create_stream(VIDEO_REMOTE_PORT, RTP_FORMAT_H264, send_flags);
+    videoStrm->configure_ctx(RCC_MTU_SIZE, mtuSize);
+
     while (true)
     {
-        cap >> frame;
-        if (frame.empty())
-            break;
 
-        cvtColor(frame, yuv, COLOR_BGR2YUV_I420);
-
+        // エンコード
         SSourcePicture pic;
         memset(&pic, 0, sizeof(SSourcePicture));
-        pic.iPicWidth = frame.cols;
-        pic.iPicHeight = frame.rows;
+        pic.iPicWidth = width;
+        pic.iPicHeight = height;
         pic.iColorFormat = videoFormatI420;
-        pic.iStride[0] = frame.cols;
-        pic.iStride[1] = pic.iStride[2] = frame.cols / 2;
-        pic.pData[0] = yuv.data;
-        pic.pData[1] = yuv.data + frame.cols * frame.rows;
-        pic.pData[2] = pic.pData[1] + (frame.cols * frame.rows) / 4;
+        pic.iStride[0] = width;
+        pic.iStride[1] = pic.iStride[2] = width / 2;
+        pic.pData[0] = data; // YUVデータをそのまま使用
 
         SFrameBSInfo info;
         memset(&info, 0, sizeof(SFrameBSInfo));
-        if (encoder->EncodeFrame(&pic, &info) != 0)
+        if (videoEncoder->EncodeFrame(&pic, &info) != 0)
         {
             cerr << "エンコードに失敗" << endl;
             continue;
@@ -153,19 +104,8 @@ void sendVideo()
 
             for (int nal = 0; nal < layerInfo.iNalCount; ++nal)
             {
-                if (layerInfo.pBsBuf == nullptr)
-                {
-                    cerr << "エンコードされたデータが nullptr です。" << endl;
-                    // エラー処理
-                }
 
-                if (layerInfo.pNalLengthInByte[nal] + layerSize > bufferSize)
-                { // bufferSize はエンコーディングバッファのサイズ
-                    cerr << "NALユニットのサイズがバッファサイズを超えています。" << endl;
-                    // エラー処理
-                }
-
-                if (strm->push_frame(layerInfo.pBsBuf + layerSize, layerInfo.pNalLengthInByte[nal], RTP_NO_H26X_SCL) != RTP_OK)
+                if (videoStrm->push_frame(layerInfo.pBsBuf + layerSize, layerInfo.pNalLengthInByte[nal], RTP_NO_H26X_SCL) != RTP_OK)
                 {
                     cerr << "RTPフレームの送信に失敗しました" << endl;
                 }
@@ -175,82 +115,102 @@ void sendVideo()
         }
     }
 
-    // エンコーダとuvgRTPのリソース解放
-    encoder->Uninitialize();
+    // クリーンアップ
+    videoEncoder->Uninitialize();
     typedef void (*DestroyEncoderFunc)(ISVCEncoder *);
     DestroyEncoderFunc destroyEncoder = (DestroyEncoderFunc)dlsym(handle, "WelsDestroySVCEncoder");
-    destroyEncoder(encoder);
+    destroyEncoder(videoEncoder);
     dlclose(handle);
-
-    sess->destroy_stream(strm);
+    sess->destroy_stream(videoStrm);
     ctx.destroy_session(sess);
 }
 
-void sendAudio()
+void sendVideoData(unsigned char *data, int dataLength)
+{
+    // while (true)
+    // {
+    // エンコード
+    SSourcePicture pic;
+    memset(&pic, 0, sizeof(SSourcePicture));
+    pic.iPicWidth = width;
+    pic.iPicHeight = height;
+    pic.iColorFormat = videoFormatI420;
+    pic.iStride[0] = width;
+    pic.iStride[1] = pic.iStride[2] = width / 2;
+    pic.pData[0] = data; // YUVデータをそのまま使用
+
+    SFrameBSInfo info;
+    memset(&info, 0, sizeof(SFrameBSInfo));
+    if (videoEncoder->EncodeFrame(&pic, &info) != 0)
+    {
+        cerr << "エンコードに失敗" << endl;
+        return;
+    }
+
+    // エンコードされたデータをRTPで送信
+    for (int layer = 0; layer < info.iLayerNum; ++layer)
+    {
+        int layerSize = 0;
+        SLayerBSInfo &layerInfo = info.sLayerInfo[layer];
+
+        for (int nal = 0; nal < layerInfo.iNalCount; ++nal)
+        {
+
+            if (videoStrm->push_frame(layerInfo.pBsBuf + layerSize, layerInfo.pNalLengthInByte[nal], RTP_NO_H26X_SCL) != RTP_OK)
+            {
+                cerr << "RTPフレームの送信に失敗しました" << endl;
+            }
+
+            layerSize += layerInfo.pNalLengthInByte[nal];
+        }
+    }
+    // }
+}
+
+void preSendAudioData(unsigned char *data, int dataLength)
 {
     // Opusエンコーダーの初期化
     int opusErr;
-    OpusEncoder *encoder = opus_encoder_create(SAMPLE_RATE, CHANNELS, OPUS_APPLICATION_VOIP, &opusErr);
+    audioEncoder = opus_encoder_create(SAMPLE_RATE, CHANNELS, OPUS_APPLICATION_VOIP, &opusErr);
 
     // uvgRTPの初期化
-    uvgrtp::context ctx;
-    uvgrtp::session *sess = ctx.create_session(REMOTE_ADDRESS);
-    auto strm = sess->create_stream(AUDIO_REMOTE_PORT, RTP_FORMAT_OPUS, RCE_SEND_ONLY);
-    strm->configure_ctx(RCC_MTU_SIZE, 1400);
+    context ctx;
+    session *sess = ctx.create_session(REMOTE_ADDRESS);
+    audioStrm = sess->create_stream(AUDIO_REMOTE_PORT, RTP_FORMAT_OPUS, RCE_SEND_ONLY);
+    audioStrm->configure_ctx(RCC_MTU_SIZE, 1400);
 
-    while (true)
+    // 生データをエンコード
+    vector<unsigned char> opusData(MAX_PACKET_SIZE);
+    int numBytes = opus_encode(audioEncoder, reinterpret_cast<opus_int16 *>(data), FRAME_SIZE, opusData.data(), opusData.size());
+    if (numBytes < 0)
     {
-        unique_lock<mutex> lock(queueMutex);
-        conditionVariable.wait(lock, []
-                               { return !sampleQueue.empty() || stopSignal; });
-
-        if (stopSignal && sampleQueue.empty())
-            break;
-
-        auto samples = sampleQueue.front();
-        sampleQueue.pop();
-        lock.unlock();
-
-        vector<unsigned char> opusData(MAX_PACKET_SIZE);
-        int numBytes = opus_encode(encoder, samples.data(), FRAME_SIZE, opusData.data(), opusData.size());
-        strm->push_frame(opusData.data(), numBytes, RTP_NO_FLAGS);
+        cerr << "Opus encoding failed" << endl;
+    }
+    else
+    {
+        // エンコードされたデータをRTPで送信
+        audioStrm->push_frame(opusData.data(), numBytes, RTP_NO_FLAGS);
     }
 
     // クリーンアップ
-    opus_encoder_destroy(encoder);
-    sess->destroy_stream(strm);
+    opus_encoder_destroy(audioEncoder);
+    sess->destroy_stream(audioStrm);
     ctx.destroy_session(sess);
 }
 
-int main()
+void sendAudioData(unsigned char *data, int dataLength)
 {
-    // ビデオ送信スレッドの起動
-    thread videoThread(sendVideo);
 
-    // PortAudioの初期化
-    Pa_Initialize();
-    PaStream *recordStream;
-    Pa_OpenDefaultStream(&recordStream, CHANNELS, 0, paInt16, SAMPLE_RATE, FRAME_SIZE, recordCallback, nullptr);
-    Pa_StartStream(recordStream);
-
-    // オーディオ送信スレッドの起動
-    thread audioThread(sendAudio);
-
-    cout << "Recording and sending... Press Enter to stop." << endl;
-    cin.get();
-    stopSignal = true;
-    conditionVariable.notify_one();
-
-    audioThread.join();
-
-    // 録音用ストリームの停止とクリーンアップ
-    Pa_StopStream(recordStream);
-    Pa_CloseStream(recordStream);
-    Pa_Terminate();
-
-    // スレッドの終了待ち
-    videoThread.join();
-    audioThread.join();
-
-    return 0;
+    // 生データをエンコード
+    vector<unsigned char> opusData(MAX_PACKET_SIZE);
+    int numBytes = opus_encode(audioEncoder, reinterpret_cast<opus_int16 *>(data), FRAME_SIZE, opusData.data(), opusData.size());
+    if (numBytes < 0)
+    {
+        cerr << "Opus encoding failed" << endl;
+    }
+    else
+    {
+        // エンコードされたデータをRTPで送信
+        audioStrm->push_frame(opusData.data(), numBytes, RTP_NO_FLAGS);
+    }
 }
