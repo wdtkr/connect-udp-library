@@ -117,78 +117,78 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named mediaSender
+# Target rules for targets named testSender
 
 # Build rule for target.
-mediaSender: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mediaSender
-.PHONY : mediaSender
+testSender: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testSender
+.PHONY : testSender
 
 # fast build rule for target.
-mediaSender/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mediaSender.dir/build.make CMakeFiles/mediaSender.dir/build
-.PHONY : mediaSender/fast
+testSender/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/build
+.PHONY : testSender/fast
 
 #=============================================================================
-# Target rules for targets named mediaReceiver
+# Target rules for targets named testReceiver
 
 # Build rule for target.
-mediaReceiver: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mediaReceiver
-.PHONY : mediaReceiver
+testReceiver: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testReceiver
+.PHONY : testReceiver
 
 # fast build rule for target.
-mediaReceiver/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mediaReceiver.dir/build.make CMakeFiles/mediaReceiver.dir/build
-.PHONY : mediaReceiver/fast
+testReceiver/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/build
+.PHONY : testReceiver/fast
 
-mediaReceiver.o: mediaReceiver.cpp.o
-.PHONY : mediaReceiver.o
-
-# target to build an object file
-mediaReceiver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mediaReceiver.dir/build.make CMakeFiles/mediaReceiver.dir/mediaReceiver.cpp.o
-.PHONY : mediaReceiver.cpp.o
-
-mediaReceiver.i: mediaReceiver.cpp.i
-.PHONY : mediaReceiver.i
-
-# target to preprocess a source file
-mediaReceiver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mediaReceiver.dir/build.make CMakeFiles/mediaReceiver.dir/mediaReceiver.cpp.i
-.PHONY : mediaReceiver.cpp.i
-
-mediaReceiver.s: mediaReceiver.cpp.s
-.PHONY : mediaReceiver.s
-
-# target to generate assembly for a file
-mediaReceiver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mediaReceiver.dir/build.make CMakeFiles/mediaReceiver.dir/mediaReceiver.cpp.s
-.PHONY : mediaReceiver.cpp.s
-
-mediaSender.o: mediaSender.cpp.o
-.PHONY : mediaSender.o
+testReceiver.o: testReceiver.cpp.o
+.PHONY : testReceiver.o
 
 # target to build an object file
-mediaSender.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mediaSender.dir/build.make CMakeFiles/mediaSender.dir/mediaSender.cpp.o
-.PHONY : mediaSender.cpp.o
+testReceiver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.o
+.PHONY : testReceiver.cpp.o
 
-mediaSender.i: mediaSender.cpp.i
-.PHONY : mediaSender.i
+testReceiver.i: testReceiver.cpp.i
+.PHONY : testReceiver.i
 
 # target to preprocess a source file
-mediaSender.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mediaSender.dir/build.make CMakeFiles/mediaSender.dir/mediaSender.cpp.i
-.PHONY : mediaSender.cpp.i
+testReceiver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.i
+.PHONY : testReceiver.cpp.i
 
-mediaSender.s: mediaSender.cpp.s
-.PHONY : mediaSender.s
+testReceiver.s: testReceiver.cpp.s
+.PHONY : testReceiver.s
 
 # target to generate assembly for a file
-mediaSender.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mediaSender.dir/build.make CMakeFiles/mediaSender.dir/mediaSender.cpp.s
-.PHONY : mediaSender.cpp.s
+testReceiver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.s
+.PHONY : testReceiver.cpp.s
+
+testSender.o: testSender.cpp.o
+.PHONY : testSender.o
+
+# target to build an object file
+testSender.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/testSender.cpp.o
+.PHONY : testSender.cpp.o
+
+testSender.i: testSender.cpp.i
+.PHONY : testSender.i
+
+# target to preprocess a source file
+testSender.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/testSender.cpp.i
+.PHONY : testSender.cpp.i
+
+testSender.s: testSender.cpp.s
+.PHONY : testSender.s
+
+# target to generate assembly for a file
+testSender.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/testSender.cpp.s
+.PHONY : testSender.cpp.s
 
 # Help Target
 help:
@@ -198,14 +198,14 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... mediaReceiver"
-	@echo "... mediaSender"
-	@echo "... mediaReceiver.o"
-	@echo "... mediaReceiver.i"
-	@echo "... mediaReceiver.s"
-	@echo "... mediaSender.o"
-	@echo "... mediaSender.i"
-	@echo "... mediaSender.s"
+	@echo "... testReceiver"
+	@echo "... testSender"
+	@echo "... testReceiver.o"
+	@echo "... testReceiver.i"
+	@echo "... testReceiver.s"
+	@echo "... testSender.o"
+	@echo "... testSender.i"
+	@echo "... testSender.s"
 .PHONY : help
 
 

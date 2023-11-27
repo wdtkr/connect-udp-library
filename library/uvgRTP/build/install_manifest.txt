@@ -1,0 +1,17 @@
+/usr/local/lib/pkgconfig/uvgrtp.pc
+/usr/local/lib/libuvgrtp.a
+/usr/local/include/uvgrtp/clock.hh
+/usr/local/include/uvgrtp/context.hh
+/usr/local/include/uvgrtp/frame.hh
+/usr/local/include/uvgrtp/lib.hh
+/usr/local/include/uvgrtp/media_stream.hh
+/usr/local/include/uvgrtp/rtcp.hh
+/usr/local/include/uvgrtp/session.hh
+/usr/local/include/uvgrtp/util.hh
+/usr/local/include/uvgrtp/version.hh
+/usr/local/include/uvgrtp/wrapper_c.hh
+/usr/local/lib/cmake/uvgrtp/uvgrtpTargets.cmake
+/usr/local/lib/cmake/uvgrtp/uvgrtpTargets-release.cmake
+/usr/local/lib/cmake/uvgrtp/uvgrtpConfig.cmake
+/usr/local/lib/cmake/uvgrtp/uvgrtpMacros.cmake
+/usr/local/lib/cmake/uvgrtp/uvgrtpConfigVersion.cmake

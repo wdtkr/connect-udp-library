@@ -53,6 +53,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/mediaSender.dir/DependInfo.cmake"
-  "CMakeFiles/mediaReceiver.dir/DependInfo.cmake"
+  "CMakeFiles/testSender.dir/DependInfo.cmake"
+  "CMakeFiles/testReceiver.dir/DependInfo.cmake"
   )
