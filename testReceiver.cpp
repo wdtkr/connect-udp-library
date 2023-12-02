@@ -32,7 +32,7 @@ constexpr uint16_t AUDIO_LOCAL_PORT = 30004;
 std::queue<std::vector<opus_int16>> playbackQueue;
 std::mutex queueMutex;
 std::condition_variable conditionVariable;
-bool stopSignal = false;
+std::atomic<bool> stopSignal(false);
 
 // 再生のコールバック関数
 static int playbackCallback(const void *inputBuffer, void *outputBuffer,
@@ -132,7 +132,7 @@ int main()
     // メインスレッドでビデオ受信とデコード
     while (!stopSignal)
     {
-        auto frame = h264->pull_frame();
+        auto frame = h264->pull_frame(1000);
         if (!frame)
         {
             cerr << "RTPフレームの受信に失敗しました" << endl;
@@ -176,20 +176,17 @@ int main()
             cvtColor(yuvImg, rgbImg, COLOR_YUV2BGR_I420);
 
             imshow("Decoded Frame", rgbImg);
+            frame::dealloc_frame(frame);
         }
 
-        int key = waitKey(1);
+        int key = waitKey(10);
         if (key == 'q' || key == 'Q')
         {
             stopSignal = true;
-            break;
+            // break;
         }
-
-        delete frame;
     }
 
-    std::cin.get();
-    stopSignal = true;
     conditionVariable.notify_one();
     // オーディオスレッドの終了待ち
     audioThread.join();
@@ -199,20 +196,8 @@ int main()
     Pa_CloseStream(playbackStream);
     Pa_Terminate();
 
-    // クリーンアップ
     decoder->Uninitialize();
-    dlclose(handle);
-    sess->destroy_stream(h264);
-    ctx.destroy_session(sess);
 
-    // デコーダの解放
-    decoder->Uninitialize();
-    typedef void (*DestroyDecoderFunc)(ISVCDecoder *);
-    DestroyDecoderFunc destroyDecoder = (DestroyDecoderFunc)dlsym(handle, "WelsDestroyDecoder");
-    destroyDecoder(decoder);
-    dlclose(handle);
-
-    // uvgRTPセッションの解放
     if (h264)
     {
         sess->destroy_stream(h264);
@@ -222,5 +207,11 @@ int main()
         ctx.destroy_session(sess);
     }
 
+    // デコーダの解放
+    typedef void (*DestroyDecoderFunc)(ISVCDecoder *);
+    DestroyDecoderFunc destroyDecoder = (DestroyDecoderFunc)dlsym(handle, "WelsDestroyDecoder");
+    destroyDecoder(decoder);
+
+    dlclose(handle);
     return 0;
 }
