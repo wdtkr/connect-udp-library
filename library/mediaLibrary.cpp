@@ -2,6 +2,10 @@
 #include <vector>
 #include <mutex>
 #include <dlfcn.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #include <opencv2/opencv.hpp>
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
@@ -19,6 +23,9 @@ using namespace uvgrtp;
 char PEER_ADDRESS[] = "127.0.0.1";
 uint16_t VIDEO_PORT = 30002;
 uint16_t AUDIO_PORT = 30004;
+
+// TCP用ソケット
+int server_fd, new_socket;
 
 // 送信用ストリーム
 context sendCtx;
@@ -84,6 +91,108 @@ void setCallback(CallbackType debug, ReceiveCallbackType receive)
 void setLibraryPath(const string &path)
 {
     libraryPath = path.c_str();
+}
+
+/* =======================================
+    TCPで接続確認をおこなう関数
+======================================= */
+
+// TCPを初期化して接続を試みる関数
+// Senderが接続先（Receiver）を見つけてから通信開始をする
+bool initializeTcpSender()
+{
+    int sock = 0;
+    struct sockaddr_in serv_addr;
+    char buffer[1024] = {0};
+    const char *message = "Hello from Sender";
+
+    if ((sock = ::socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    {
+        return false;
+    }
+
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_port = htons(30000); // TCPサーバーのポート番号
+
+    // 受信側サーバーのアドレスを設定
+    if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0)
+    {
+        return false;
+    }
+
+    if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+    {
+        debug_callback("接続先が見つかりませんでした");
+        return false;
+    }
+
+    debug_callback("接続完了");
+    // メッセージを送信し、応答を待つ
+    send(sock, message, strlen(message), 0);
+    read(sock, buffer, 1024);
+
+    // ソケットを閉じる
+    close(sock);
+    return true;
+}
+
+// TCPサーバーを初期化して接続を待ち受ける関数
+bool initializeTcpReceiver()
+{
+    struct sockaddr_in address;
+    int opt = 1;
+    int addrlen = sizeof(address);
+    char buffer[1024] = {0};
+    const char *message = "Hello from Receiver";
+
+    // ソケットを作成
+    if ((server_fd = ::socket(AF_INET, SOCK_STREAM, 0)) == 0)
+    {
+        return false;
+    }
+
+    // ソケットにオプションを設定
+    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)))
+    {
+        return false;
+    }
+
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_port = htons(30000); // ポート番号
+
+    // ソケットをポートにバインド
+    if (::bind(server_fd, (struct sockaddr *)&address, sizeof(address)) != 0)
+    {
+        return false;
+    }
+
+    // 接続を待ち受ける
+    if (listen(server_fd, 3) < 0)
+    {
+        return false;
+    }
+
+    if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen)) < 0)
+    {
+        return false;
+    }
+
+    // クライアントからのメッセージを受信し、応答を送信
+    read(new_socket, buffer, 1024);
+    send(new_socket, message, strlen(message), 0);
+
+    // ソケットを閉じる
+    close(new_socket);
+    close(server_fd);
+
+    return true;
+}
+
+void closeTcpSocket()
+{
+    close(new_socket);
+    close(server_fd);
 }
 
 /**
@@ -208,15 +317,10 @@ void encodeVideoData(unsigned char *inputData, int length)
                 debug_callback("RTPフレームの送信に失敗しました");
                 return;
             }
-            else
-            {
-                debug_callback("RTPフレーム送信成功");
-            }
 
             layerSize += layerInfo.pNalLengthInByte[nal];
         }
     }
-    debug_callback("ビデオデータのエンコード関数の終了");
 }
 
 // オーディオデータのエンコード関数

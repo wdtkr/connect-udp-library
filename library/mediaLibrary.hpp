@@ -15,6 +15,9 @@ extern "C"
 {
     UNITYEXPORT void UNITYCALLCONV setCallback(CallbackType debug, ReceiveCallbackType receive);
     UNITYEXPORT void UNITYCALLCONV setLibraryPath(const std::string &path);
+    UNITYEXPORT bool UNITYCALLCONV initializeTcpSender();
+    UNITYEXPORT bool UNITYCALLCONV initializeTcpReceiver();
+    UNITYEXPORT void UNITYCALLCONV closeTcpSocket();
     UNITYEXPORT int UNITYCALLCONV initEncodeVideoData(int videoFormat);
     UNITYEXPORT void UNITYCALLCONV encodeVideoData(unsigned char *inputData, int length);
     UNITYEXPORT void UNITYCALLCONV destroyEncoder();

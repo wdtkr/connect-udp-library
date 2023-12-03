@@ -6,6 +6,9 @@
 #include <opus.h>
 #include <portaudio.h>
 #include <dlfcn.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
 #include <opencv2/opencv.hpp>
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
@@ -63,6 +66,49 @@ static int recordCallback(const void *inputBuffer, void *outputBuffer,
         conditionVariable.notify_one();
     }
     return paContinue;
+}
+
+// TCPクライアントを初期化して接続を試みる関数
+bool initializeTcpClient()
+{
+    int sock = 0;
+    struct sockaddr_in serv_addr;
+    char buffer[1024] = {0};
+    const char *message = "Hello from Sender";
+
+    if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    {
+        std::cout << "Socket creation error" << std::endl;
+        return false;
+    }
+
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_port = htons(30000); // TCPサーバーのポート番号
+
+    // 受信側サーバーのアドレスを設定
+    if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0)
+    {
+        std::cout << "Invalid address / Address not supported" << std::endl;
+        return false;
+    }
+
+    if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
+    {
+        std::cout << "Connection failed" << std::endl;
+        return false;
+    }
+
+    std::cout << "Connected to server successfully" << std::endl; // 接続成功
+
+    // メッセージを送信し、応答を待つ
+    send(sock, message, strlen(message), 0);
+    std::cout << "Hello message sent" << std::endl;
+    read(sock, buffer, 1024);
+    std::cout << "Server: " << buffer << std::endl;
+
+    // ソケットを閉じる
+    close(sock);
+    return true;
 }
 
 void sendVideo()
@@ -224,6 +270,16 @@ void sendAudio()
 
 int main()
 {
+    // TCPで送信待機
+    while (true)
+    {
+        if (initializeTcpClient() == true)
+        {
+            break;
+        }
+        sleep(1);
+    }
+
     // ビデオ送信スレッドの起動
     thread videoThread(sendVideo);
 
