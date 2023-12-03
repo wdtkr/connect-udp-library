@@ -123,6 +123,7 @@ bool initializeTcpSender()
     if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
     {
         debug_callback("接続先が見つかりませんでした");
+        close(sock);
         return false;
     }
 
