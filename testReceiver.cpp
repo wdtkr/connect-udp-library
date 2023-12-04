@@ -195,7 +195,7 @@ int main()
     Pa_OpenDefaultStream(&playbackStream, 0, CHANNELS, paInt16, SAMPLE_RATE, FRAME_SIZE, playbackCallback, nullptr);
     Pa_StartStream(playbackStream);
 
-    // TCPで受信待機
+    // // TCPで受信待機
     if (!initializeTcpServer())
     {
         std::cerr << "Failed to initialize TCP server" << std::endl;

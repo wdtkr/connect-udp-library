@@ -15,6 +15,14 @@ extern "C"
 {
     UNITYEXPORT void UNITYCALLCONV setCallback(CallbackType debug, ReceiveCallbackType receive);
     UNITYEXPORT void UNITYCALLCONV setLibraryPath(const std::string &path);
+    UNITYEXPORT void UNITYCALLCONV setAddressAndPort(
+        const char *address,
+        int mytcpport,
+        int peertcpport,
+        int myvideoport,
+        int peervideoport,
+        int myaudioport,
+        int peeraudioport);
     UNITYEXPORT bool UNITYCALLCONV initializeTcpSender();
     UNITYEXPORT bool UNITYCALLCONV initializeTcpReceiver();
     UNITYEXPORT void UNITYCALLCONV closeTcpSocket();

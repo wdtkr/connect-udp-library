@@ -19,10 +19,14 @@
 using namespace std;
 using namespace uvgrtp;
 
-// RTP送受信用変数
-char PEER_ADDRESS[] = "127.0.0.1";
-uint16_t VIDEO_PORT = 30002;
-uint16_t AUDIO_PORT = 30004;
+// RTP送受信用変数(デフォルト)
+char peerAddress[16] = "127.0.0.1";
+uint16_t myTcpPort = 30001;
+uint16_t peerTcpPort = 30000;
+uint16_t myVideoPort = 30006;
+uint16_t peerVideoPort = 30002;
+uint16_t myAudioPort = 30004;
+uint16_t peerAudioPort = 30008;
 
 // TCP用ソケット
 int server_fd, new_socket;
@@ -93,6 +97,26 @@ void setLibraryPath(const string &path)
     libraryPath = path.c_str();
 }
 
+void setAddressAndPort(
+    const char *address,
+    int mytcpport,
+    int peertcpport,
+    int myvideoport,
+    int peervideoport,
+    int myaudioport,
+    int peeraudioport)
+{
+    strncpy(peerAddress, address, sizeof(peerAddress) - 1);
+    peerAddress[sizeof(peerAddress) - 1] = '\0';
+
+    myTcpPort = mytcpport;
+    peerTcpPort = peertcpport;
+    myVideoPort = myvideoport;
+    peerVideoPort = peervideoport;
+    myAudioPort = myaudioport;
+    peerAudioPort = peeraudioport;
+}
+
 /* =======================================
     TCPで接続確認をおこなう関数
 ======================================= */
@@ -112,10 +136,10 @@ bool initializeTcpSender()
     }
 
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(30000); // TCPサーバーのポート番号
+    serv_addr.sin_port = htons(peerTcpPort); // TCPサーバーのポート番号
 
     // 受信側サーバーのアドレスを設定
-    if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0)
+    if (inet_pton(AF_INET, peerAddress, &serv_addr.sin_addr) <= 0)
     {
         return false;
     }
@@ -160,7 +184,7 @@ bool initializeTcpReceiver()
 
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons(30000); // ポート番号
+    address.sin_port = htons(myTcpPort);
 
     // ソケットをポートにバインド
     if (::bind(server_fd, (struct sockaddr *)&address, sizeof(address)) != 0)
@@ -249,8 +273,8 @@ int initEncodeVideoData(int videoFormatNum)
     videoEncoder->SetOption(ENCODER_OPTION_DATAFORMAT, &videoFormat);
 
     // uvgRTPの初期化
-    sendSess = sendCtx.create_session(PEER_ADDRESS);
-    sendStrm = sendSess->create_stream(VIDEO_PORT, RTP_FORMAT_H264, send_flags);
+    sendSess = sendCtx.create_session(peerAddress);
+    sendStrm = sendSess->create_stream(peerVideoPort, RTP_FORMAT_H264, send_flags);
     sendStrm->configure_ctx(RCC_MTU_SIZE, mtuSize);
     if (sendSess == NULL || sendStrm == NULL)
     {
@@ -374,8 +398,8 @@ void initDecodeVideoData()
         return;
     }
 
-    receiveSess = receiveCtx.create_session(PEER_ADDRESS);
-    receiveStrm = receiveSess->create_stream(VIDEO_PORT, RTP_FORMAT_H264, RCE_RECEIVE_ONLY);
+    receiveSess = receiveCtx.create_session(peerAddress);
+    receiveStrm = receiveSess->create_stream(myVideoPort, RTP_FORMAT_H264, RCE_RECEIVE_ONLY);
     debug_callback("デコーダの設定成功");
 }
 
@@ -431,6 +455,8 @@ void receiveAndDecodeVideoData()
 
         receive_callback(frameData, size, 3);
         frame::dealloc_frame(frame);
+
+        delete[] frameData;
     }
     else
     {
