@@ -19,6 +19,9 @@
 using namespace std;
 using namespace uvgrtp;
 
+void *handle;
+string libraryPath;
+
 // RTP送受信用変数(デフォルト)
 char peerAddress[16] = "127.0.0.1";
 uint16_t myTcpPort = 30001;
@@ -32,19 +35,24 @@ uint16_t peerAudioPort = 30008;
 int server_fd, new_socket;
 
 // 送信用ストリーム
-context sendCtx;
-session *sendSess;
-media_stream *sendStrm;
+context sendVideoCtx;
+session *sendVideoSess;
+media_stream *sendVideoStrm;
+
+context sendAudioCtx;
+session *sendAudioSess;
+media_stream *sendAudioStrm;
 
 // 受信用ストリーム
-context receiveCtx;
-session *receiveSess;
-media_stream *receiveStrm;
+context receiveVideoCtx;
+session *receiveVideoSess;
+media_stream *receiveVideoStrm;
+
+context receiveAudioCtx;
+session *receiveAudioSess;
+media_stream *receiveAudioStrm;
 
 // 映像エンコード用変数
-void *handle;
-string libraryPath;
-
 ISVCEncoder *videoEncoder = nullptr;
 SEncParamBase videoEncParam;
 uint16_t width = 1920;
@@ -69,12 +77,15 @@ uint16_t CHANNELS = 1;
 uint16_t FRAME_SIZE = 960;
 uint16_t MAX_PACKET_SIZE = 1400;
 
+OpusEncoder *audioEncoder = nullptr;
+
 // 音声デコード用変数
 OpusDecoder *audioDecoder = nullptr;
 
 // プラットフォーム接続用
-CallbackType debug_callback = nullptr;
-ReceiveCallbackType receive_callback = nullptr;
+CallbackType debugCallback = nullptr;
+ReceiveCallbackType receiveVideoCallback = nullptr;
+ReceiveCallbackType receiveAudioCallback = nullptr;
 
 /* =======================================
 コーデックのパラメータ設定用関数
@@ -83,12 +94,13 @@ RTPのパラメータ設定用関数
 ======================================= */
 
 // コールバック関数の設定用関数
-void setCallback(CallbackType debug, ReceiveCallbackType receive)
+void setMediaCallback(CallbackType debug, ReceiveCallbackType receiveVideo, ReceiveCallbackType receiveAudio)
 {
-    debug_callback = debug;
-    receive_callback = receive;
+    debugCallback = debug;
+    receiveVideoCallback = receiveVideo;
+    receiveAudioCallback = receiveAudio;
 
-    debug_callback("debugコールバック");
+    debugCallback("debugコールバック");
 }
 
 // openh264ライブラリのパスを設定する関数
@@ -146,12 +158,12 @@ bool initializeTcpSender()
 
     if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0)
     {
-        debug_callback("接続先が見つかりませんでした");
+        debugCallback("接続先が見つかりませんでした");
         close(sock);
         return false;
     }
 
-    debug_callback("接続完了");
+    debugCallback("接続完了");
     // メッセージを送信し、応答を待つ
     send(sock, message, strlen(message), 0);
     read(sock, buffer, 1024);
@@ -243,7 +255,7 @@ int initEncodeVideoData(int videoFormatNum)
     handle = dlopen(libraryPath.c_str(), RTLD_LAZY);
     if (!handle)
     {
-        debug_callback("DLOpenエラー");
+        debugCallback("DLOpenエラー");
         return -1;
     }
 
@@ -251,7 +263,7 @@ int initEncodeVideoData(int videoFormatNum)
     CreateEncoderFunc createEncoder = (CreateEncoderFunc)dlsym(handle, "WelsCreateSVCEncoder");
     if (createEncoder(&videoEncoder) != 0 || videoEncoder == nullptr)
     {
-        debug_callback("ビデオエンコーダー作成エラー");
+        debugCallback("ビデオエンコーダー作成エラー");
         return -1;
     }
 
@@ -266,19 +278,19 @@ int initEncodeVideoData(int videoFormatNum)
     videoEncParam.iTargetBitrate = bitrate;
     if (videoEncoder->Initialize(&videoEncParam) != 0)
     {
-        debug_callback("ビデオエンコーダー作成エラー");
+        debugCallback("ビデオエンコーダー作成エラー");
         return -1;
     }
 
     videoEncoder->SetOption(ENCODER_OPTION_DATAFORMAT, &videoFormat);
 
     // uvgRTPの初期化
-    sendSess = sendCtx.create_session(peerAddress);
-    sendStrm = sendSess->create_stream(peerVideoPort, RTP_FORMAT_H264, send_flags);
-    sendStrm->configure_ctx(RCC_MTU_SIZE, mtuSize);
-    if (sendSess == NULL || sendStrm == NULL)
+    sendVideoSess = sendVideoCtx.create_session(peerAddress);
+    sendVideoStrm = sendVideoSess->create_stream(peerVideoPort, RTP_FORMAT_H264, send_flags);
+    sendVideoStrm->configure_ctx(RCC_MTU_SIZE, mtuSize);
+    if (sendVideoSess == NULL || sendVideoStrm == NULL)
     {
-        debug_callback("ビデオエンコーダー作成エラー2");
+        debugCallback("ビデオエンコーダー作成エラー2");
         return -1;
     }
 
@@ -312,7 +324,7 @@ void encodeVideoData(unsigned char *inputData, int length)
     memset(&info, 0, sizeof(SFrameBSInfo));
     if (videoEncoder->EncodeFrame(&pic, &info) != 0)
     {
-        debug_callback("エンコードに失敗");
+        debugCallback("エンコードに失敗");
         return;
     }
 
@@ -326,20 +338,20 @@ void encodeVideoData(unsigned char *inputData, int length)
         {
             if (layerInfo.pBsBuf == nullptr)
             {
-                debug_callback("エンコードされたデータがnullptrです");
+                debugCallback("エンコードされたデータがnullptrです");
                 return;
             }
 
             if (layerInfo.pNalLengthInByte[nal] + layerSize > videoEncodeBufferSize)
             {
                 // bufferSize はエンコーディングバッファのサイズ
-                debug_callback("NALユニットのサイズがバッファサイズを超えています");
+                debugCallback("NALユニットのサイズがバッファサイズを超えています");
                 return;
             }
 
-            if (sendStrm->push_frame(layerInfo.pBsBuf + layerSize, layerInfo.pNalLengthInByte[nal], RTP_NO_H26X_SCL) != RTP_OK)
+            if (sendVideoStrm->push_frame(layerInfo.pBsBuf + layerSize, layerInfo.pNalLengthInByte[nal], RTP_NO_H26X_SCL) != RTP_OK)
             {
-                debug_callback("RTPフレームの送信に失敗しました");
+                debugCallback("RTPフレームの送信に失敗しました");
                 return;
             }
 
@@ -348,23 +360,57 @@ void encodeVideoData(unsigned char *inputData, int length)
     }
 }
 
-// オーディオデータのエンコード関数
-void EncodeAudioData(const vector<opus_int16> &inputData)
+void initEncodeAudioData()
 {
-    //
+    // Opusエンコーダーの初期化
+    int opusErr;
+    audioEncoder = opus_encoder_create(SAMPLE_RATE, CHANNELS, OPUS_APPLICATION_VOIP, &opusErr);
+    if (opusErr != OPUS_OK)
+    {
+        debugCallback("Opusエンコーダの初期化に失敗");
+        return;
+    }
+
+    // uvgRTPの初期化
+    sendAudioSess = sendAudioCtx.create_session(peerAddress);
+    sendAudioStrm = sendAudioSess->create_stream(peerAudioPort, RTP_FORMAT_OPUS, RCE_SEND_ONLY);
+    sendAudioStrm->configure_ctx(RCC_MTU_SIZE, 1400);
+}
+
+// オーディオデータのエンコードと送信を行う関数
+void encodeAudioData(const unsigned char *audioData, int length)
+{
+    // オーディオデータのエンコード
+    vector<unsigned char> opusData(MAX_PACKET_SIZE);
+    int numBytes = opus_encode(audioEncoder, reinterpret_cast<const opus_int16 *>(audioData), FRAME_SIZE, opusData.data(), opusData.size());
+    if (numBytes < 0)
+    {
+        debugCallback("Opusエンコードに失敗");
+    }
+    else
+    {
+        // エンコードされたデータをRTPで送信
+        sendAudioStrm->push_frame(opusData.data(), numBytes, RTP_NO_FLAGS);
+    }
 }
 
 // エンコーダのクリーンアップ関数
 void destroyEncoder()
 {
-    // エンコーダとuvgRTPのリソース解放
+    // ビデオエンコーダとビデオ用uvgRTPのリソース解放
     videoEncoder->Uninitialize();
     typedef void (*DestroyEncoderFunc)(ISVCEncoder *);
     DestroyEncoderFunc destroyVideoEncoder = (DestroyEncoderFunc)dlsym(handle, "WelsDestroySVCEncoder");
     destroyVideoEncoder(videoEncoder);
     dlclose(handle);
-    sendSess->destroy_stream(sendStrm);
-    sendCtx.destroy_session(sendSess);
+
+    sendVideoSess->destroy_stream(sendVideoStrm);
+    sendVideoCtx.destroy_session(sendVideoSess);
+
+    // エンコーダとuvgRTPのリソース解放
+    opus_encoder_destroy(audioEncoder);
+    sendAudioSess->destroy_stream(sendAudioStrm);
+    sendAudioCtx.destroy_session(sendAudioSess);
 }
 
 /* =======================================
@@ -377,7 +423,7 @@ void initDecodeVideoData()
     handle = dlopen(libraryPath.c_str(), RTLD_LAZY);
     if (!handle)
     {
-        debug_callback("DLOpenエラー");
+        debugCallback("DLOpenエラー");
         return;
     }
 
@@ -386,7 +432,7 @@ void initDecodeVideoData()
 
     if (createDecoder(&videoDecoder) != 0 || videoDecoder == nullptr)
     {
-        debug_callback("デコーダの作成に失敗");
+        debugCallback("デコーダの作成に失敗");
         return;
     }
 
@@ -394,22 +440,22 @@ void initDecodeVideoData()
     decParam.sVideoProperty.eVideoBsType = VIDEO_BITSTREAM_AVC;
     if (videoDecoder->Initialize(&decParam) != 0)
     {
-        debug_callback("デコーダの初期化に失敗");
+        debugCallback("デコーダの初期化に失敗");
         return;
     }
 
-    receiveSess = receiveCtx.create_session(peerAddress);
-    receiveStrm = receiveSess->create_stream(myVideoPort, RTP_FORMAT_H264, RCE_RECEIVE_ONLY);
-    debug_callback("デコーダの設定成功");
+    receiveVideoSess = receiveVideoCtx.create_session(peerAddress);
+    receiveVideoStrm = receiveVideoSess->create_stream(myVideoPort, RTP_FORMAT_H264, RCE_RECEIVE_ONLY);
+    debugCallback("デコーダの設定成功");
 }
 
 // 映像デコード関数
 void receiveAndDecodeVideoData()
 {
-    auto frame = receiveStrm->pull_frame(1000);
+    auto frame = receiveVideoStrm->pull_frame(1000);
     if (!frame)
     {
-        debug_callback("RTPフレームの受信に失敗しました");
+        debugCallback("RTPフレームの受信に失敗しました");
         return;
     }
     // デコード処理
@@ -453,56 +499,47 @@ void receiveAndDecodeVideoData()
         unsigned char *frameData = new unsigned char[size]; // ヒープにデータを確保
         std::memcpy(frameData, rgbImg.data, size);
 
-        receive_callback(frameData, size, 3);
+        receiveVideoCallback(frameData, size, 3);
         frame::dealloc_frame(frame);
 
         delete[] frameData;
     }
     else
     {
-        debug_callback("デコードに失敗 or 1000msが経過");
+        debugCallback("デコードに失敗 or 1000msが経過");
     }
 }
 
 // 音声デコード準備関数
-int preDecodeAudioData(unsigned char *inputData, int inputLength, opus_int16 *outputData, int outputLength)
+void initDecodeAudioData(unsigned char *inputData, int inputLength, opus_int16 *outputData, int outputLength)
 {
     int opusErr;
     audioDecoder = opus_decoder_create(SAMPLE_RATE, CHANNELS, &opusErr);
     if (opusErr != OPUS_OK)
     {
-        cerr << "Opusデコーダの初期化に失敗" << endl;
-        return -1;
+        debugCallback("opusエンコーダの作成に失敗");
+        return;
     }
+
+    receiveAudioSess = receiveAudioCtx.create_session(peerAddress);
+    receiveAudioStrm = receiveAudioSess->create_stream(myAudioPort, RTP_FORMAT_OPUS, RCE_RECEIVE_ONLY);
 }
 
 // 音声デコード・関数
-int decodeAudioData(unsigned char *inputData, int inputLength, opus_int16 *outputData, int outputLength)
+void decodeAudioData()
 {
-    int frameSize = opus_decode(audioDecoder, inputData, inputLength, outputData, FRAME_SIZE, 0);
-    if (frameSize < 0)
-    {
-        cerr << "Opusデコードに失敗: " << opus_strerror(frameSize) << endl;
-        return -1;
-    }
-
-    // デコード成功
-    return frameSize;
+    receiveVideoCallback(audioData, size, 3);
 }
 
 void destroyDecoder()
 {
     videoDecoder->Uninitialize();
 
-    if (receiveStrm)
-    {
-        receiveSess->destroy_stream(receiveStrm);
-    }
+    if (receiveVideoStrm)
+        receiveVideoSess->destroy_stream(receiveVideoStrm);
 
-    if (receiveSess)
-    {
-        receiveCtx.destroy_session(receiveSess);
-    }
+    if (receiveVideoSess)
+        receiveVideoCtx.destroy_session(receiveVideoSess);
 
     // デコーダの解放
     typedef void (*DestroyDecoderFunc)(ISVCDecoder *);
@@ -511,18 +548,18 @@ void destroyDecoder()
 
     dlclose(handle);
 
-    debug_callback("セッションとストリームの解放");
+    debugCallback("セッションとストリームの解放");
 }
 
 // セットアップテスト用
 void test()
 {
-    debug_callback(libraryPath.c_str());
+    debugCallback(libraryPath.c_str());
     // OpenH264デコーダの初期化
     handle = dlopen(libraryPath.c_str(), RTLD_LAZY);
     if (!handle)
     {
-        debug_callback("DLOpenエラー");
+        debugCallback("DLOpenエラー");
         return;
     }
 
@@ -531,7 +568,7 @@ void test()
 
     if (createDecoder(&videoDecoder) != 0 || videoDecoder == nullptr)
     {
-        debug_callback("VideoDecoder作成エラー");
+        debugCallback("VideoDecoder作成エラー");
         return;
     }
 
@@ -539,7 +576,7 @@ void test()
     decParam.sVideoProperty.eVideoBsType = VIDEO_BITSTREAM_AVC;
     if (videoDecoder->Initialize(&decParam) != 0)
     {
-        debug_callback("VideoDecoderイニシャライズエラー");
+        debugCallback("VideoDecoderイニシャライズエラー");
         return;
     }
 
@@ -547,12 +584,12 @@ void test()
     audioDecoder = opus_decoder_create(SAMPLE_RATE, CHANNELS, &opusErr);
     if (opusErr != OPUS_OK)
     {
-        debug_callback("Audioデコーダーエラー");
+        debugCallback("Audioデコーダーエラー");
         return;
     }
 
-    if (debug_callback != nullptr)
+    if (debugCallback != nullptr)
     {
-        debug_callback("テスト関数 最後まで呼び出し成功");
+        debugCallback("テスト関数 最後まで呼び出し成功");
     }
 }

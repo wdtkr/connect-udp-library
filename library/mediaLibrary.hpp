@@ -13,7 +13,7 @@ typedef void (*CallbackType)(const char *);
 
 extern "C"
 {
-    UNITYEXPORT void UNITYCALLCONV setCallback(CallbackType debug, ReceiveCallbackType receive);
+    UNITYEXPORT void UNITYCALLCONV setMediaCallback(CallbackType debug, ReceiveCallbackType receiveVideo, ReceiveCallbackType receiveAudio);
     UNITYEXPORT void UNITYCALLCONV setLibraryPath(const std::string &path);
     UNITYEXPORT void UNITYCALLCONV setAddressAndPort(
         const char *address,
@@ -28,6 +28,8 @@ extern "C"
     UNITYEXPORT void UNITYCALLCONV closeTcpSocket();
     UNITYEXPORT int UNITYCALLCONV initEncodeVideoData(int videoFormat);
     UNITYEXPORT void UNITYCALLCONV encodeVideoData(unsigned char *inputData, int length);
+    UNITYEXPORT void UNITYCALLCONV initEncodeAudioData();
+    UNITYEXPORT void UNITYCALLCONV encodeAudioData(const unsigned char *audioData, int);
     UNITYEXPORT void UNITYCALLCONV destroyEncoder();
     UNITYEXPORT void UNITYCALLCONV initDecodeVideoData();
     UNITYEXPORT void UNITYCALLCONV receiveAndDecodeVideoData();
