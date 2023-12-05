@@ -432,7 +432,7 @@ void initDecodeVideoData()
 
     if (createDecoder(&videoDecoder) != 0 || videoDecoder == nullptr)
     {
-        debugCallback("デコーダの作成に失敗");
+        debugCallback("デコーダの作成に失敗: video");
         return;
     }
 
@@ -440,13 +440,13 @@ void initDecodeVideoData()
     decParam.sVideoProperty.eVideoBsType = VIDEO_BITSTREAM_AVC;
     if (videoDecoder->Initialize(&decParam) != 0)
     {
-        debugCallback("デコーダの初期化に失敗");
+        debugCallback("デコーダの初期化に失敗: video");
         return;
     }
 
     receiveVideoSess = receiveVideoCtx.create_session(peerAddress);
     receiveVideoStrm = receiveVideoSess->create_stream(myVideoPort, RTP_FORMAT_H264, RCE_RECEIVE_ONLY);
-    debugCallback("デコーダの設定成功");
+    debugCallback("デコーダの設定成功: video");
 }
 
 // 映像デコード関数
@@ -455,7 +455,7 @@ void receiveAndDecodeVideoData()
     auto frame = receiveVideoStrm->pull_frame(1000);
     if (!frame)
     {
-        debugCallback("RTPフレームの受信に失敗しました");
+        debugCallback("RTPフレームの受信に失敗しました: video");
         return;
     }
     // デコード処理
@@ -506,18 +506,18 @@ void receiveAndDecodeVideoData()
     }
     else
     {
-        debugCallback("デコードに失敗 or 1000msが経過");
+        debugCallback("デコードに失敗 or 1000msが経過: video");
     }
 }
 
 // 音声デコード準備関数
-void initDecodeAudioData(unsigned char *inputData, int inputLength, opus_int16 *outputData, int outputLength)
+void initDecodeAudioData()
 {
     int opusErr;
     audioDecoder = opus_decoder_create(SAMPLE_RATE, CHANNELS, &opusErr);
     if (opusErr != OPUS_OK)
     {
-        debugCallback("opusエンコーダの作成に失敗");
+        debugCallback("opusエンコーダの作成に失敗: audio");
         return;
     }
 
@@ -525,28 +525,51 @@ void initDecodeAudioData(unsigned char *inputData, int inputLength, opus_int16 *
     receiveAudioStrm = receiveAudioSess->create_stream(myAudioPort, RTP_FORMAT_OPUS, RCE_RECEIVE_ONLY);
 }
 
-// 音声デコード・関数
-void decodeAudioData()
+// 音声デコード関数
+void receiveAndDecodeAudioData()
 {
-    receiveVideoCallback(audioData, size, 3);
+    auto frame = receiveAudioStrm->pull_frame(1000);
+    if (!frame)
+    {
+        debugCallback("RTPフレームの受信に失敗しました: audio");
+        return;
+    }
+
+    vector<opus_int16> decoded(FRAME_SIZE * CHANNELS);
+    int frameSize = opus_decode(audioDecoder, frame->payload, frame->payload_len, decoded.data(), FRAME_SIZE, 0);
+
+    if (frameSize >= 0)
+    {
+        // デコードされたデータをコールバック関数に渡す
+        receiveAudioCallback(reinterpret_cast<unsigned char *>(decoded.data()), frameSize * sizeof(opus_int16), 4);
+    }
+    else
+    {
+        debugCallback("デコードに失敗 or 1000msが経過: audio");
+    }
 }
 
 void destroyDecoder()
 {
-    videoDecoder->Uninitialize();
-
+    // RTPストリームの破棄
     if (receiveVideoStrm)
         receiveVideoSess->destroy_stream(receiveVideoStrm);
-
     if (receiveVideoSess)
         receiveVideoCtx.destroy_session(receiveVideoSess);
 
+    if (receiveAudioStrm)
+        receiveAudioSess->destroy_stream(receiveAudioStrm);
+    if (receiveAudioSess)
+        receiveAudioCtx.destroy_session(receiveAudioSess);
+
     // デコーダの解放
+    videoDecoder->Uninitialize();
     typedef void (*DestroyDecoderFunc)(ISVCDecoder *);
     DestroyDecoderFunc destroyDecoder = (DestroyDecoderFunc)dlsym(handle, "WelsDestroyDecoder");
     destroyDecoder(videoDecoder);
-
     dlclose(handle);
+
+    opus_decoder_destroy(audioDecoder);
 
     debugCallback("セッションとストリームの解放");
 }

@@ -26,13 +26,18 @@ extern "C"
     UNITYEXPORT bool UNITYCALLCONV initializeTcpSender();
     UNITYEXPORT bool UNITYCALLCONV initializeTcpReceiver();
     UNITYEXPORT void UNITYCALLCONV closeTcpSocket();
+
     UNITYEXPORT int UNITYCALLCONV initEncodeVideoData(int videoFormat);
     UNITYEXPORT void UNITYCALLCONV encodeVideoData(unsigned char *inputData, int length);
     UNITYEXPORT void UNITYCALLCONV initEncodeAudioData();
     UNITYEXPORT void UNITYCALLCONV encodeAudioData(const unsigned char *audioData, int);
     UNITYEXPORT void UNITYCALLCONV destroyEncoder();
+
     UNITYEXPORT void UNITYCALLCONV initDecodeVideoData();
     UNITYEXPORT void UNITYCALLCONV receiveAndDecodeVideoData();
+    UNITYEXPORT void UNITYCALLCONV initDecodeAudioData();
+    UNITYEXPORT void UNITYCALLCONV receiveAndDecodeAudioData();
     UNITYEXPORT void UNITYCALLCONV destroyDecoder();
+
     UNITYEXPORT void UNITYCALLCONV test();
 };

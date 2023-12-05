@@ -114,7 +114,7 @@ bool initializeTcpClient()
 void sendVideo()
 {
     // OpenCVの初期化
-    VideoCapture cap(1);
+    VideoCapture cap(0);
     if (!cap.isOpened())
     {
         cerr << "カメラが開けません" << endl;
