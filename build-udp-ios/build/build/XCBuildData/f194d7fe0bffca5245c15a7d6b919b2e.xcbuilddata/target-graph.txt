@@ -1,0 +1,7 @@
+Target dependency graph (3 targets)
+Target 'ALL_BUILD' in project 'lib-udp-ios'
+➜ Explicit dependency on target 'lib-udp-ios' in project 'lib-udp-ios'
+➜ Explicit dependency on target 'ZERO_CHECK' in project 'lib-udp-ios'
+Target 'lib-udp-ios' in project 'lib-udp-ios'
+➜ Explicit dependency on target 'ZERO_CHECK' in project 'lib-udp-ios'
+Target 'ZERO_CHECK' in project 'lib-udp-ios' (no dependencies)

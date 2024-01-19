@@ -1,0 +1,2 @@
+/Users/takeru/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ar qc lib-udp-android.a "CMakeFiles/-udp-android.dir/lib.cpp.o"
+/Users/takeru/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/llvm-ranlib lib-udp-android.a

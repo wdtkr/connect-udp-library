@@ -1,0 +1,767 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		3085B55ABC0C4DEA938D4022 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2673D7765D774AF8866E8ED6 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				7729B81F81762DEF98B7DA2D /* Generate CMakeFiles/ZERO_CHECK */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		3ED1B64CE61A4BE7BF8FB552 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 99A36D6D4F084248B1749184 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				F639CB8BAD0E860961282542 /* Generate CMakeFiles/ALL_BUILD */,
+			);
+			dependencies = (
+				28192B5561CD4D63BD4396DA /* PBXTargetDependency */,
+				0578DA0275104781BB4D1199 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		204FE9816BE94BDFA0DE1E85 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/CMakeFiles/lib-udp-ios.dir/Info.plist */ = {isa = PBXBuildFile; fileRef = 5A3C96D07A2D4DD0BE88C751 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/CMakeFiles/lib-udp-ios.dir/Info.plist */; };
+		4FBCB902EA184AB2B694D662 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/lib.cpp */ = {isa = PBXBuildFile; fileRef = DC64794CFA784DD6868432A0 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/lib.cpp */; };
+		711C065247624304A1652474 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 17907E1CE15F4CE7894E8E3D /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/CMakeLists.txt */; };
+		891AC52711FD44FBBE6E3E3A /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/lib.hpp */ = {isa = PBXBuildFile; fileRef = E64F54E2B6D841C7B5D31731 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/lib.hpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		1750B7CDEC3D4507B96B7A38 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		4921C67512874535B797F92D /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		CD8C60BC5D5E485B84F961BC /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		FAC23261EE784C91BC6E849E /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		8DBB193BF1334F95B0D2449C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F24DEB6EC68A4313AD860D51 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3085B55ABC0C4DEA938D4022;
+			remoteInfo = ZERO_CHECK;
+		};
+		8FE9D6BE008C4DAEA78332BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F24DEB6EC68A4313AD860D51 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3085B55ABC0C4DEA938D4022;
+			remoteInfo = ZERO_CHECK;
+		};
+		D486CB7551474FF29AD70A17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F24DEB6EC68A4313AD860D51 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A54A948E13C4DD088C73C95;
+			remoteInfo = "lib-udp-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0727AF489043421EA73C881B /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		17907E1CE15F4CE7894E8E3D /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		5A3C96D07A2D4DD0BE88C751 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/CMakeFiles/lib-udp-ios.dir/Info.plist */ = {isa = PBXFileReference; explicitFileType = sourcecode.text.plist; fileEncoding = 4; name = Info.plist; path = "build/CMakeFiles/lib-udp-ios.dir/Info.plist"; sourceTree = SOURCE_ROOT; };
+		5EB9F3FD4F6D4F57B97EFDAE /* lib-udp-ios */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "liblib-udp-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC64794CFA784DD6868432A0 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/lib.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = lib.cpp; path = lib.cpp; sourceTree = SOURCE_ROOT; };
+		E64F54E2B6D841C7B5D31731 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/lib.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = lib.hpp; path = lib.hpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00826F474B784E0D82827687 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		39588DC5592E4BA1B3D8B08D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5A3C96D07A2D4DD0BE88C751 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/CMakeFiles/lib-udp-ios.dir/Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7672C539F1FD4F06B3F9AA14 /* lib-udp-ios */ = {
+			isa = PBXGroup;
+			children = (
+				AA6FE7464B3445C2B28468AD /* Source Files */,
+				B3327DF8463F48208C0F34C2 /* Header Files */,
+				39588DC5592E4BA1B3D8B08D /* Resources */,
+				17907E1CE15F4CE7894E8E3D /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/CMakeLists.txt */,
+			);
+			name = "lib-udp-ios";
+			sourceTree = "<group>";
+		};
+		972F6549F4BD4D64BCB47ADE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA6FE7464B3445C2B28468AD /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				DC64794CFA784DD6868432A0 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/lib.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		AD582C7438F743E7AE964302 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5EB9F3FD4F6D4F57B97EFDAE /* lib-udp-ios */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B3327DF8463F48208C0F34C2 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				E64F54E2B6D841C7B5D31731 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/lib.hpp */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		C9498332EBF6478EB435F8A7 = {
+			isa = PBXGroup;
+			children = (
+				7672C539F1FD4F06B3F9AA14 /* lib-udp-ios */,
+				DD298CD5D80F4DB888196678 /* ALL_BUILD */,
+				AD582C7438F743E7AE964302 /* Products */,
+				972F6549F4BD4D64BCB47ADE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D3E596C6C0CB4D128B5E0A76 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		DD298CD5D80F4DB888196678 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				D3E596C6C0CB4D128B5E0A76 /* CMake Rules */,
+				0727AF489043421EA73C881B /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3A54A948E13C4DD088C73C95 /* lib-udp-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA1286C741504262B00D6711 /* Build configuration list for PBXNativeTarget "lib-udp-ios" */;
+			buildPhases = (
+				602C77328DAD45DDAE4A9A50 /* Sources */,
+				00826F474B784E0D82827687 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A2531C9FDD8E4086A3B82431 /* PBXTargetDependency */,
+			);
+			name = "lib-udp-ios";
+			productName = "lib-udp-ios";
+			productReference = 5EB9F3FD4F6D4F57B97EFDAE /* lib-udp-ios */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F24DEB6EC68A4313AD860D51 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = 21E04AA3A2BF41B7BF3CE21F /* Build configuration list for PBXProject "lib-udp-ios" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				1750B7CDEC3D4507B96B7A38 /* Debug */,
+				FAC23261EE784C91BC6E849E /* Release */,
+				CD8C60BC5D5E485B84F961BC /* MinSizeRel */,
+				4921C67512874535B797F92D /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = C9498332EBF6478EB435F8A7;
+			projectDirPath = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios";
+			projectRoot = "";
+			targets = (
+				3ED1B64CE61A4BE7BF8FB552 /* ALL_BUILD */,
+				3085B55ABC0C4DEA938D4022 /* ZERO_CHECK */,
+				3A54A948E13C4DD088C73C95 /* lib-udp-ios */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C0110FC8322DE7E50886E21 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		7729B81F81762DEF98B7DA2D /* Generate CMakeFiles/ZERO_CHECK */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate CMakeFiles/ZERO_CHECK";
+			outputPaths = (
+"/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/CMakeFiles/ZERO_CHECK"			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build
+  make -f /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build
+  make -f /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build
+  make -f /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build
+  make -f /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/CMakeScripts/ReRunCMake.make
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+		9B50530E35CC49C82C2FACCF = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		F639CB8BAD0E860961282542 /* Generate CMakeFiles/ALL_BUILD */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate CMakeFiles/ALL_BUILD";
+			outputPaths = (
+"/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/CMakeFiles/ALL_BUILD"			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build
+  echo Build\\ all\\ projects
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		602C77328DAD45DDAE4A9A50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FBCB902EA184AB2B694D662 /* /Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/lib.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0578DA0275104781BB4D1199 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3085B55ABC0C4DEA938D4022 /* ZERO_CHECK */;
+			targetProxy = 8FE9D6BE008C4DAEA78332BA /* PBXContainerItemProxy */;
+		};
+		28192B5561CD4D63BD4396DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A54A948E13C4DD088C73C95 /* lib-udp-ios */;
+			targetProxy = D486CB7551474FF29AD70A17 /* PBXContainerItemProxy */;
+		};
+		A2531C9FDD8E4086A3B82431 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3085B55ABC0C4DEA938D4022 /* ZERO_CHECK */;
+			targetProxy = 8DBB193BF1334F95B0D2449C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		000DD5249CB04DC0822BBD59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		0CE478D863A84CF78D09B062 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		18F5E19127274C1C89CA6D20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/Release${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=gnu++14' ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "lib-udp-ios";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/build/lib-udp-ios.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		2DF8C060585D46EA91AD2C04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/Debug${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "   '-std=gnu++14' ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "lib-udp-ios";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/build/lib-udp-ios.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		3F507721711242938BE2AEA9 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		5250C2A3CC664C1F9CBFB5C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		5CBA0A8F9A0A4F68AECF8A6E /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				"ARCHS[sdk=iphoneos*]" = arm64;
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				ENABLE_BITCODE = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.0.sdk";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SYMROOT = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/build";
+				"VALID_ARCHS[sdk=iphoneos*]" = arm64;
+			};
+			name = MinSizeRel;
+		};
+		61D6C5035D804B30B24A7C31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				"ARCHS[sdk=iphoneos*]" = arm64;
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				ENABLE_BITCODE = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.0.sdk";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SYMROOT = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/build";
+				"VALID_ARCHS[sdk=iphoneos*]" = arm64;
+			};
+			name = Release;
+		};
+		702D8683237749EA86C27EAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				"ARCHS[sdk=iphoneos*]" = arm64;
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				ENABLE_BITCODE = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.0.sdk";
+				SYMROOT = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/build";
+				"VALID_ARCHS[sdk=iphoneos*]" = arm64;
+			};
+			name = Debug;
+		};
+		80D4CCDD82D8428D895E2A27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		A90C682F14304562810A80D1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		B8571F134A774750B7E7B8D3 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		D3AD4552DD1946A9856E5258 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				"ARCHS[sdk=iphoneos*]" = arm64;
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				ENABLE_BITCODE = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				SDKROOT = "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.0.sdk";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SYMROOT = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/build";
+				"VALID_ARCHS[sdk=iphoneos*]" = arm64;
+			};
+			name = RelWithDebInfo;
+		};
+		EE662090566B4F9595724D55 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		FB1BBD7A65754DC185B2FD71 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/MinSizeRel${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=gnu++14' ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "lib-udp-ios";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/build/lib-udp-ios.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		FC398E62F16C47EF80DEF299 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/RelWithDebInfo${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=gnu++14' ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "lib-udp-ios";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/takeru/Documents/GitHub/connect-udp-library/build-udp-ios/build/build/lib-udp-ios.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21E04AA3A2BF41B7BF3CE21F /* Build configuration list for PBXProject "lib-udp-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				702D8683237749EA86C27EAE /* Debug */,
+				61D6C5035D804B30B24A7C31 /* Release */,
+				5CBA0A8F9A0A4F68AECF8A6E /* MinSizeRel */,
+				D3AD4552DD1946A9856E5258 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2673D7765D774AF8866E8ED6 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000DD5249CB04DC0822BBD59 /* Debug */,
+				5250C2A3CC664C1F9CBFB5C9 /* Release */,
+				B8571F134A774750B7E7B8D3 /* MinSizeRel */,
+				0CE478D863A84CF78D09B062 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		99A36D6D4F084248B1749184 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80D4CCDD82D8428D895E2A27 /* Debug */,
+				A90C682F14304562810A80D1 /* Release */,
+				EE662090566B4F9595724D55 /* MinSizeRel */,
+				3F507721711242938BE2AEA9 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AA1286C741504262B00D6711 /* Build configuration list for PBXNativeTarget "lib-udp-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DF8C060585D46EA91AD2C04 /* Debug */,
+				18F5E19127274C1C89CA6D20 /* Release */,
+				FB1BBD7A65754DC185B2FD71 /* MinSizeRel */,
+				FC398E62F16C47EF80DEF299 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F24DEB6EC68A4313AD860D51 /* Project object */;
+}

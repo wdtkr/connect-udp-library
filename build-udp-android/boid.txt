@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Boid</title>
+    <style>
+        body {
+            background-color: #FFFFFF;
+            padding: 1em;
+            font: 20pt;
+        }
+
+        button {
+            font-size: 20pt;
+            background-color: #0000FF;
+            color: #FFFFFF;
+        }
+
+        input[type="text"] {
+            font-size: 20pt;
+            color: #FF0000;
+        }
+
+        #cv {
+            background-color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="cv" width="600" height="400"></canvas>
+    <div>
+        集中<input type="text" id="co" value="0.07" size="4">
+        分離<input type="text" id="sp" value="0.80" size="4">
+        同調<input type="text" id="al" value="0.80" size="4">
+        <button onclick="startBoid()">▸</button>
+        <button onclick="stopBoid()">■</button>
+    </div>
+    <script>
+        const cv = document.getElementById("cv");
+        const ct = cv.getContext("2d");
+        const boids = [];
+        const r = 5;
+        const n = 50;
+        let sw = 0;
+        let timer, cent, c, s, p, voc, vos, voa;
+        let obj = {};
+        function startBoid() {
+            c = parseFloat(document.getElementById("co").value);
+            s = parseFloat(document.getElementById("sp").value);
+            a = parseFloat(document.getElementById("al").value);
+            if (sw == 0) { timer = setInterval(movie, 20); sw = 1; }
+        }
+        function stopBoid() { clearInterval(timer); sw = 0; }
+        //
+        class Boid {
+            constructor() {
+                this.x = Math.floor(Math.random() * cv.width);
+                this.y = Math.floor(Math.random() * cv.height);
+                this.sx = 2;
+                this.sy = 2;
+                this.color = "#FFFFFF";
+                this.vc = { x: 0, y: 0 };
+                this.vs = { x: 0, y: 0 };
+                this.va = { x: 0, y: 0 };
+            }
+            draw() {
+                ct.fillStyle = this.color;
+                ct.beginPath();
+                ct.arc(this.x, this.y, r, 0, 2 * Math.PI);
+                ct.fill();
+                this.nextPos();
+            }
+            nextPos() {
+                this.co();
+                this.sp();
+                this.al();
+                this.sx = this.vc.x + this.vs.x + this.va.x;
+                this.sy = this.vc.y + this.vs.y + this.va.y;
+                voc = Math.sqrt(this.vc.x ** 2 + this.vc.y ** 2);
+                vos = Math.sqrt(this.vs.x ** 2 + this.vs.y ** 2);
+                voa = Math.sqrt(this.va.x ** 2 + this.va.y ** 2);
+                if (voc > vos && voc > voa) { this.color = "red"; }
+                if (vos > voc && vos > voa) { this.color = "blue"; }
+                if (voa > voc && voa > vos) { this.color = "yellow"; }
+                this.x += this.sx;
+                this.y += this.sy;
+                if (this.x < r && this.sx < 0) { this.sx *= -1; }
+                if (this.x > cv.width - r && this.sx > 0) { this.sx *= -1; }
+                if (this.y < r && this.sy < O) { this.sy *= -1; }
+                if (this.y > cv.height - r && this.sy > 0) { this.sy *= -1; }
+            }
+            //
+            co() {
+                cent = { x: 0, y: 0 };
+                boids.forEach(b => { cent.x += b.x; cent.y += b.y; });
+                this.vc.x = (cent.x / boids.length - this.x) * c;
+                this.vc.y = (cent.y / boids.length - this.y) * c;
+            }
+            //
+            sp() {
+                obj = boids.filter(b => dist(this.x, this.y, b.x, b.y) < r * 2);
+                obj.forEach(
+                    b => { this.vs.x -= b.x - this.x; this.vs.y -= b.y - this.y; }
+                );
+                this.vs.x *= s;
+                this.vs.y *= s;
+                //
+                function dist(x0, yO, x1, y1) {
+                    return Math.sqrt((x1 - x0) ** 2 + (y1 - yO) ** 2);
+                }
+            }
+            //
+            al() {
+                var av = { x: 0, y: 0 };
+                boids.forEach(b => { av.x += b.sx; av.y += b.sy; });
+                av.x = av.x / boids.length;
+                av.y = av.y / boids.length;
+                this.va.x = (av.x - this.sx) * a;
+                this.va.y = (av.y - this.sy) * a;
+            }
+        }
+        //
+        function movie() {
+            ct.clearRect(0, 0, cv.width, cv.height);
+            boids.forEach(b => b.draw());
+        }
+        function setup() {
+            for (i = 0; i < n; i++) { boids.push(new Boid()); }
+        }
+        window.onload = setup();
+    </script>
+</body>
+
+</html>

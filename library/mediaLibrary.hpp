@@ -6,15 +6,13 @@
 #define UNITYEXPORT
 #endif
 
-#include "opus/include/opus.h"
-
 typedef void (*ReceiveCallbackType)(unsigned char *, int, int);
 typedef void (*CallbackType)(const char *);
 
 extern "C"
 {
     UNITYEXPORT void UNITYCALLCONV setMediaCallback(CallbackType debug, ReceiveCallbackType receiveVideo, ReceiveCallbackType receiveAudio);
-    UNITYEXPORT void UNITYCALLCONV setLibraryPath(const std::string &path);
+    UNITYEXPORT void UNITYCALLCONV setLibraryPath(const char *path);
     UNITYEXPORT void UNITYCALLCONV setAddressAndPort(
         const char *address,
         int mytcpport,

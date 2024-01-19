@@ -142,6 +142,32 @@ testReceiver/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/build
 .PHONY : testReceiver/fast
 
+#=============================================================================
+# Target rules for targets named testSenderJrtp
+
+# Build rule for target.
+testSenderJrtp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testSenderJrtp
+.PHONY : testSenderJrtp
+
+# fast build rule for target.
+testSenderJrtp/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSenderJrtp.dir/build.make CMakeFiles/testSenderJrtp.dir/build
+.PHONY : testSenderJrtp/fast
+
+#=============================================================================
+# Target rules for targets named testReceiverJrtp
+
+# Build rule for target.
+testReceiverJrtp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testReceiverJrtp
+.PHONY : testReceiverJrtp
+
+# fast build rule for target.
+testReceiverJrtp/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiverJrtp.dir/build.make CMakeFiles/testReceiverJrtp.dir/build
+.PHONY : testReceiverJrtp/fast
+
 testReceiver.o: testReceiver.cpp.o
 .PHONY : testReceiver.o
 
@@ -165,6 +191,30 @@ testReceiver.s: testReceiver.cpp.s
 testReceiver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiver.dir/build.make CMakeFiles/testReceiver.dir/testReceiver.cpp.s
 .PHONY : testReceiver.cpp.s
+
+testReceiverJrtp.o: testReceiverJrtp.cpp.o
+.PHONY : testReceiverJrtp.o
+
+# target to build an object file
+testReceiverJrtp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiverJrtp.dir/build.make CMakeFiles/testReceiverJrtp.dir/testReceiverJrtp.cpp.o
+.PHONY : testReceiverJrtp.cpp.o
+
+testReceiverJrtp.i: testReceiverJrtp.cpp.i
+.PHONY : testReceiverJrtp.i
+
+# target to preprocess a source file
+testReceiverJrtp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiverJrtp.dir/build.make CMakeFiles/testReceiverJrtp.dir/testReceiverJrtp.cpp.i
+.PHONY : testReceiverJrtp.cpp.i
+
+testReceiverJrtp.s: testReceiverJrtp.cpp.s
+.PHONY : testReceiverJrtp.s
+
+# target to generate assembly for a file
+testReceiverJrtp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testReceiverJrtp.dir/build.make CMakeFiles/testReceiverJrtp.dir/testReceiverJrtp.cpp.s
+.PHONY : testReceiverJrtp.cpp.s
 
 testSender.o: testSender.cpp.o
 .PHONY : testSender.o
@@ -190,6 +240,30 @@ testSender.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSender.dir/build.make CMakeFiles/testSender.dir/testSender.cpp.s
 .PHONY : testSender.cpp.s
 
+testSenderJrtp.o: testSenderJrtp.cpp.o
+.PHONY : testSenderJrtp.o
+
+# target to build an object file
+testSenderJrtp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSenderJrtp.dir/build.make CMakeFiles/testSenderJrtp.dir/testSenderJrtp.cpp.o
+.PHONY : testSenderJrtp.cpp.o
+
+testSenderJrtp.i: testSenderJrtp.cpp.i
+.PHONY : testSenderJrtp.i
+
+# target to preprocess a source file
+testSenderJrtp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSenderJrtp.dir/build.make CMakeFiles/testSenderJrtp.dir/testSenderJrtp.cpp.i
+.PHONY : testSenderJrtp.cpp.i
+
+testSenderJrtp.s: testSenderJrtp.cpp.s
+.PHONY : testSenderJrtp.s
+
+# target to generate assembly for a file
+testSenderJrtp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testSenderJrtp.dir/build.make CMakeFiles/testSenderJrtp.dir/testSenderJrtp.cpp.s
+.PHONY : testSenderJrtp.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -199,13 +273,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... testReceiver"
+	@echo "... testReceiverJrtp"
 	@echo "... testSender"
+	@echo "... testSenderJrtp"
 	@echo "... testReceiver.o"
 	@echo "... testReceiver.i"
 	@echo "... testReceiver.s"
+	@echo "... testReceiverJrtp.o"
+	@echo "... testReceiverJrtp.i"
+	@echo "... testReceiverJrtp.s"
 	@echo "... testSender.o"
 	@echo "... testSender.i"
 	@echo "... testSender.s"
+	@echo "... testSenderJrtp.o"
+	@echo "... testSenderJrtp.i"
+	@echo "... testSenderJrtp.s"
 .PHONY : help
 
 

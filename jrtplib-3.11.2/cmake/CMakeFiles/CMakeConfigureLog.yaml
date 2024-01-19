@@ -1,0 +1,1116 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineSystem.cmake:211 (message)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      The system is: Darwin - 23.1.0 - arm64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      ld: library 'System' not found
+      clang: error: linker command failed with exit code 1 (use -v to see invocation)
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is AppleClang, found in:
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/3.27.7/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      ld: library 'c++' not found
+      clang: error: linker command failed with exit code 1 (use -v to see invocation)
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+      
+      The CXX compiler identification is AppleClang, found in:
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/3.27.7/CompilerIdCXX/CMakeCXXCompilerId.o
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-L6Lk7V"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-L6Lk7V"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-L6Lk7V'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_be25a/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_be25a.dir/build.make CMakeFiles/cmTC_be25a.dir/build
+        Building C object CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk   -v -Wl,-v -MD -MT CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeCCompilerABI.c
+        Apple clang version 15.0.0 (clang-1500.0.40.1)
+        Target: arm64-apple-darwin23.1.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+        clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+         "/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx14.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=14.0 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 1015.6 -v -fcoverage-compilation-dir=/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-L6Lk7V -resource-dir /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0 -dependency-file CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -internal-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/local/include -internal-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -internal-externc-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include -internal-externc-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdebug-compilation-dir=/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-L6Lk7V -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeCCompilerABI.c
+        clang -cc1 version 15.0.0 (clang-1500.0.40.1) default target arm64-apple-darwin23.1.0
+        ignoring nonexistent directory "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/local/include"
+        ignoring nonexistent directory "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include
+         /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include
+         /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+         /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/System/Library/Frameworks (framework directory)
+        End of search list.
+        Linking C executable cmTC_be25a
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_be25a.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -o cmTC_be25a 
+        Apple clang version 15.0.0 (clang-1500.0.40.1)
+        Target: arm64-apple-darwin23.1.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+         "/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 14.0.0 14.0 -syslibroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -o cmTC_be25a -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/lib/darwin/libclang_rt.osx.a
+        @(#)PROGRAM:ld  PROJECT:dyld-1015.7
+        BUILD 18:48:48 Aug 22 2023
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+        will use ld-classic for: armv6 armv7 armv7s arm64_32 i386 armv6m armv7k armv7m armv7em
+        LTO support using: LLVM version 15.0.0 (static support for 29, runtime is 29)
+        TAPI support using: Apple TAPI version 15.0.0 (tapi-1500.0.12.3)
+        Library search paths:
+        Framework search paths:
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include]
+          add: [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include]
+          add: [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        end of search list found
+        collapse include dir [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include] ==> [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include]
+        collapse include dir [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include] ==> [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include]
+        collapse include dir [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include] ==> [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        implicit include dirs: [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include;/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include;/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-L6Lk7V']
+        ignore line: []
+        ignore line: [Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_be25a/fast]
+        ignore line: [/Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_be25a.dir/build.make CMakeFiles/cmTC_be25a.dir/build]
+        ignore line: [Building C object CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk   -v -Wl -v -MD -MT CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Apple clang version 15.0.0 (clang-1500.0.40.1)]
+        ignore line: [Target: arm64-apple-darwin23.1.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ "/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx14.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=14.0 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 1015.6 -v -fcoverage-compilation-dir=/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-L6Lk7V -resource-dir /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0 -dependency-file CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -internal-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/local/include -internal-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -internal-externc-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include -internal-externc-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdebug-compilation-dir=/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-L6Lk7V -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [clang -cc1 version 15.0.0 (clang-1500.0.40.1) default target arm64-apple-darwin23.1.0]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include]
+        ignore line: [ /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include]
+        ignore line: [ /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        ignore line: [ /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [Linking C executable cmTC_be25a]
+        ignore line: [/opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_be25a.dir/link.txt --verbose=1]
+        ignore line: [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -o cmTC_be25a ]
+        ignore line: [Apple clang version 15.0.0 (clang-1500.0.40.1)]
+        ignore line: [Target: arm64-apple-darwin23.1.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        link line: [ "/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 14.0.0 14.0 -syslibroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -o cmTC_be25a -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/lib/darwin/libclang_rt.osx.a]
+          arg [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [arm64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [macos] ==> ignore
+          arg [14.0.0] ==> ignore
+          arg [14.0] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_be25a] ==> ignore
+          arg [-search_paths_first] ==> ignore
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_be25a.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [-lSystem] ==> lib [System]
+          arg [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/lib/darwin/libclang_rt.osx.a]
+        remove lib [System]
+        remove lib [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/lib/darwin/libclang_rt.osx.a]
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-bL5ELz"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-bL5ELz"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-bL5ELz'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_2d482/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_2d482.dir/build.make CMakeFiles/cmTC_2d482.dir/build
+        Building CXX object CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk   -v -Wl,-v -MD -MT CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Apple clang version 15.0.0 (clang-1500.0.40.1)
+        Target: arm64-apple-darwin23.1.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+        clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
+         "/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx14.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=14.0 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 1015.6 -v -fcoverage-compilation-dir=/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-bL5ELz -resource-dir /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0 -dependency-file CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -internal-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/local/include -internal-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -internal-externc-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include -internal-externc-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -fdebug-compilation-dir=/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-bL5ELz -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        clang -cc1 version 15.0.0 (clang-1500.0.40.1) default target arm64-apple-darwin23.1.0
+        ignoring nonexistent directory "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/local/include"
+        ignoring nonexistent directory "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/Library/Frameworks"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1
+         /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include
+         /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include
+         /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+         /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/System/Library/Frameworks (framework directory)
+        End of search list.
+        Linking CXX executable cmTC_2d482
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2d482.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_2d482 
+        Apple clang version 15.0.0 (clang-1500.0.40.1)
+        Target: arm64-apple-darwin23.1.0
+        Thread model: posix
+        InstalledDir: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+         "/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 14.0.0 14.0 -syslibroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -o cmTC_2d482 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/lib/darwin/libclang_rt.osx.a
+        @(#)PROGRAM:ld  PROJECT:dyld-1015.7
+        BUILD 18:48:48 Aug 22 2023
+        configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+        will use ld-classic for: armv6 armv7 armv7s arm64_32 i386 armv6m armv7k armv7m armv7em
+        LTO support using: LLVM version 15.0.0 (static support for 29, runtime is 29)
+        TAPI support using: Apple TAPI version 15.0.0 (tapi-1500.0.12.3)
+        Library search paths:
+        Framework search paths:
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:127 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed CXX implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1]
+          add: [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include]
+          add: [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include]
+          add: [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        end of search list found
+        collapse include dir [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1] ==> [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1]
+        collapse include dir [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include] ==> [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include]
+        collapse include dir [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include] ==> [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include]
+        collapse include dir [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include] ==> [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        implicit include dirs: [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1;/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include;/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include;/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:152 (message)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:6 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        ignore line: [Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-bL5ELz']
+        ignore line: []
+        ignore line: [Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_2d482/fast]
+        ignore line: [/Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_2d482.dir/build.make CMakeFiles/cmTC_2d482.dir/build]
+        ignore line: [Building CXX object CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk   -v -Wl -v -MD -MT CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Apple clang version 15.0.0 (clang-1500.0.40.1)]
+        ignore line: [Target: arm64-apple-darwin23.1.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
+        ignore line: [ "/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx14.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=14.0 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 1015.6 -v -fcoverage-compilation-dir=/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-bL5ELz -resource-dir /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0 -dependency-file CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -internal-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/local/include -internal-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include -internal-externc-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include -internal-externc-isystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -fdebug-compilation-dir=/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-bL5ELz -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [clang -cc1 version 15.0.0 (clang-1500.0.40.1) default target arm64-apple-darwin23.1.0]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/local/include"]
+        ignore line: [ignoring nonexistent directory "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/Library/Frameworks"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/c++/v1]
+        ignore line: [ /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include]
+        ignore line: [ /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include]
+        ignore line: [ /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+        ignore line: [ /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/System/Library/Frameworks (framework directory)]
+        ignore line: [End of search list.]
+        ignore line: [Linking CXX executable cmTC_2d482]
+        ignore line: [/opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2d482.dir/link.txt --verbose=1]
+        ignore line: [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names  -v -Wl -v CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_2d482 ]
+        ignore line: [Apple clang version 15.0.0 (clang-1500.0.40.1)]
+        ignore line: [Target: arm64-apple-darwin23.1.0]
+        ignore line: [Thread model: posix]
+        ignore line: [InstalledDir: /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+        link line: [ "/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 14.0.0 14.0 -syslibroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -o cmTC_2d482 -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/lib/darwin/libclang_rt.osx.a]
+          arg [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+          arg [-demangle] ==> ignore
+          arg [-lto_library] ==> ignore, skip following value
+          arg [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+          arg [-dynamic] ==> ignore
+          arg [-arch] ==> ignore
+          arg [arm64] ==> ignore
+          arg [-platform_version] ==> ignore
+          arg [macos] ==> ignore
+          arg [14.0.0] ==> ignore
+          arg [14.0] ==> ignore
+          arg [-syslibroot] ==> ignore
+          arg [/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk] ==> ignore
+          arg [-o] ==> ignore
+          arg [cmTC_2d482] ==> ignore
+          arg [-search_paths_first] ==> ignore
+          arg [-headerpad_max_install_names] ==> ignore
+          arg [-v] ==> ignore
+          arg [CMakeFiles/cmTC_2d482.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [-lc++] ==> lib [c++]
+          arg [-lSystem] ==> lib [System]
+          arg [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/lib/darwin/libclang_rt.osx.a]
+        remove lib [System]
+        remove lib [/Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/lib/darwin/libclang_rt.osx.a]
+        implicit libs: [c++]
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CheckIncludeFileCXX.cmake:89 (try_compile)"
+      - "cmake/Macros.cmake:11 (check_include_file_cxx)"
+      - "CMakeLists.txt:51 (jrtplib_include_test)"
+    checks:
+      - "Looking for C++ include sys/filio.h"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-ghY004"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-ghY004"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "jrtplib_include_test_RTP_HAVE_SYS_FILIO"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-ghY004'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_ea30d/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_ea30d.dir/build.make CMakeFiles/cmTC_ea30d.dir/build
+        Building CXX object CMakeFiles/cmTC_ea30d.dir/CheckIncludeFile.cxx.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_ea30d.dir/CheckIncludeFile.cxx.o -MF CMakeFiles/cmTC_ea30d.dir/CheckIncludeFile.cxx.o.d -o CMakeFiles/cmTC_ea30d.dir/CheckIncludeFile.cxx.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-ghY004/CheckIncludeFile.cxx
+        Linking CXX executable cmTC_ea30d
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ea30d.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_ea30d.dir/CheckIncludeFile.cxx.o -o cmTC_ea30d 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CheckIncludeFileCXX.cmake:89 (try_compile)"
+      - "cmake/Macros.cmake:11 (check_include_file_cxx)"
+      - "CMakeLists.txt:52 (jrtplib_include_test)"
+    checks:
+      - "Looking for C++ include sys/sockio.h"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-IIAaQ4"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-IIAaQ4"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "jrtplib_include_test_RTP_HAVE_SYS_SOCKIO"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-IIAaQ4'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_26c16/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_26c16.dir/build.make CMakeFiles/cmTC_26c16.dir/build
+        Building CXX object CMakeFiles/cmTC_26c16.dir/CheckIncludeFile.cxx.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_26c16.dir/CheckIncludeFile.cxx.o -MF CMakeFiles/cmTC_26c16.dir/CheckIncludeFile.cxx.o.d -o CMakeFiles/cmTC_26c16.dir/CheckIncludeFile.cxx.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-IIAaQ4/CheckIncludeFile.cxx
+        Linking CXX executable cmTC_26c16
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_26c16.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_26c16.dir/CheckIncludeFile.cxx.o -o cmTC_26c16 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CheckIncludeFileCXX.cmake:89 (try_compile)"
+      - "cmake/Macros.cmake:11 (check_include_file_cxx)"
+      - "CMakeLists.txt:53 (jrtplib_include_test)"
+    checks:
+      - "Looking for C++ include netinet/in.h"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-lnJE1X"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-lnJE1X"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "jrtplib_include_test_RTP_SUPPORT_NETINET_IN"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-lnJE1X'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_0afa2/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_0afa2.dir/build.make CMakeFiles/cmTC_0afa2.dir/build
+        Building CXX object CMakeFiles/cmTC_0afa2.dir/CheckIncludeFile.cxx.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_0afa2.dir/CheckIncludeFile.cxx.o -MF CMakeFiles/cmTC_0afa2.dir/CheckIncludeFile.cxx.o.d -o CMakeFiles/cmTC_0afa2.dir/CheckIncludeFile.cxx.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-lnJE1X/CheckIncludeFile.cxx
+        Linking CXX executable cmTC_0afa2
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0afa2.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_0afa2.dir/CheckIncludeFile.cxx.o -o cmTC_0afa2 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:136 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "winsocktest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_490f8/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_490f8.dir/build.make CMakeFiles/cmTC_490f8.dir/build
+        Building CXX object CMakeFiles/cmTC_490f8.dir/winsocktest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_490f8.dir/winsocktest.cpp.o -MF CMakeFiles/cmTC_490f8.dir/winsocktest.cpp.o.d -o CMakeFiles/cmTC_490f8.dir/winsocktest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/winsocktest.cpp
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/winsocktest.cpp:1:10: fatal error: 'winsock2.h' file not found
+        #include <winsock2.h>   
+                 ^~~~~~~~~~~~
+        1 error generated.
+        make[1]: *** [CMakeFiles/cmTC_490f8.dir/winsocktest.cpp.o] Error 1
+        make: *** [cmTC_490f8/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:144 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "socklentest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_cd67d/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_cd67d.dir/build.make CMakeFiles/cmTC_cd67d.dir/build
+        Building CXX object CMakeFiles/cmTC_cd67d.dir/socklentest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_cd67d.dir/socklentest.cpp.o -MF CMakeFiles/cmTC_cd67d.dir/socklentest.cpp.o.d -o CMakeFiles/cmTC_cd67d.dir/socklentest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/socklentest.cpp
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/socklentest.cpp:19:2: error: no matching function for call to 'getsockname'
+                getsockname(sock,&addr,&param);
+                ^~~~~~~~~~~
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/sys/socket.h:730:9: note: candidate function not viable: no known conversion from 'int *' to 'socklen_t *' (aka 'unsigned int *') for 3rd argument
+        int     getsockname(int, struct sockaddr * __restrict, socklen_t * __restrict)
+                ^
+        1 error generated.
+        make[1]: *** [CMakeFiles/cmTC_cd67d.dir/socklentest.cpp.o] Error 1
+        make: *** [cmTC_cd67d/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:145 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "ipv4mcasttest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_ae2b0/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_ae2b0.dir/build.make CMakeFiles/cmTC_ae2b0.dir/build
+        Building CXX object CMakeFiles/cmTC_ae2b0.dir/ipv4mcasttest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_ae2b0.dir/ipv4mcasttest.cpp.o -MF CMakeFiles/cmTC_ae2b0.dir/ipv4mcasttest.cpp.o.d -o CMakeFiles/cmTC_ae2b0.dir/ipv4mcasttest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/ipv4mcasttest.cpp
+        Linking CXX executable cmTC_ae2b0
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ae2b0.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_ae2b0.dir/ipv4mcasttest.cpp.o -o cmTC_ae2b0 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:146 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "salentest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_c0ab4/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_c0ab4.dir/build.make CMakeFiles/cmTC_c0ab4.dir/build
+        Building CXX object CMakeFiles/cmTC_c0ab4.dir/salentest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_c0ab4.dir/salentest.cpp.o -MF CMakeFiles/cmTC_c0ab4.dir/salentest.cpp.o.d -o CMakeFiles/cmTC_c0ab4.dir/salentest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/salentest.cpp
+        Linking CXX executable cmTC_c0ab4
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c0ab4.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_c0ab4.dir/salentest.cpp.o -o cmTC_c0ab4 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:147 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "getloginrtest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_7feaf/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_7feaf.dir/build.make CMakeFiles/cmTC_7feaf.dir/build
+        Building CXX object CMakeFiles/cmTC_7feaf.dir/getloginrtest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_7feaf.dir/getloginrtest.cpp.o -MF CMakeFiles/cmTC_7feaf.dir/getloginrtest.cpp.o.d -o CMakeFiles/cmTC_7feaf.dir/getloginrtest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/getloginrtest.cpp
+        Linking CXX executable cmTC_7feaf
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7feaf.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_7feaf.dir/getloginrtest.cpp.o -o cmTC_7feaf 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:148 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "ipv6test_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_3f157/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_3f157.dir/build.make CMakeFiles/cmTC_3f157.dir/build
+        Building CXX object CMakeFiles/cmTC_3f157.dir/ipv6test.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_3f157.dir/ipv6test.cpp.o -MF CMakeFiles/cmTC_3f157.dir/ipv6test.cpp.o.d -o CMakeFiles/cmTC_3f157.dir/ipv6test.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/ipv6test.cpp
+        Linking CXX executable cmTC_3f157
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3f157.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_3f157.dir/ipv6test.cpp.o -o cmTC_3f157 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:149 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "ipv6mcasttest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_1166f/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_1166f.dir/build.make CMakeFiles/cmTC_1166f.dir/build
+        Building CXX object CMakeFiles/cmTC_1166f.dir/ipv6mcasttest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_1166f.dir/ipv6mcasttest.cpp.o -MF CMakeFiles/cmTC_1166f.dir/ipv6mcasttest.cpp.o.d -o CMakeFiles/cmTC_1166f.dir/ipv6mcasttest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/ipv6mcasttest.cpp
+        Linking CXX executable cmTC_1166f
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1166f.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_1166f.dir/ipv6mcasttest.cpp.o -o cmTC_1166f 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:150 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "performancecounter_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_88632/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_88632.dir/build.make CMakeFiles/cmTC_88632.dir/build
+        Building CXX object CMakeFiles/cmTC_88632.dir/performancecounter.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_88632.dir/performancecounter.cpp.o -MF CMakeFiles/cmTC_88632.dir/performancecounter.cpp.o.d -o CMakeFiles/cmTC_88632.dir/performancecounter.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/performancecounter.cpp
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/performancecounter.cpp:1:10: fatal error: 'windows.h' file not found
+        #include <windows.h>    
+                 ^~~~~~~~~~~
+        1 error generated.
+        make[1]: *** [CMakeFiles/cmTC_88632.dir/performancecounter.cpp.o] Error 1
+        make: *** [cmTC_88632/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:151 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "suffix_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_c2037/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_c2037.dir/build.make CMakeFiles/cmTC_c2037.dir/build
+        Building CXX object CMakeFiles/cmTC_c2037.dir/suffix.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_c2037.dir/suffix.cpp.o -MF CMakeFiles/cmTC_c2037.dir/suffix.cpp.o.d -o CMakeFiles/cmTC_c2037.dir/suffix.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/suffix.cpp
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/suffix.cpp:3:16: error: invalid suffix 'ui64' on integer constant
+                return (int)10ui64;
+                              ^
+        1 error generated.
+        make[1]: *** [CMakeFiles/cmTC_c2037.dir/suffix.cpp.o] Error 1
+        make: *** [cmTC_c2037/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:152 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "arrayalloc_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_2b634/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_2b634.dir/build.make CMakeFiles/cmTC_2b634.dir/build
+        Building CXX object CMakeFiles/cmTC_2b634.dir/arrayalloc.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_2b634.dir/arrayalloc.cpp.o -MF CMakeFiles/cmTC_2b634.dir/arrayalloc.cpp.o.d -o CMakeFiles/cmTC_2b634.dir/arrayalloc.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/arrayalloc.cpp
+        Linking CXX executable cmTC_2b634
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2b634.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_2b634.dir/arrayalloc.cpp.o -o cmTC_2b634 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:153 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "randstest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_4d5d6/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_4d5d6.dir/build.make CMakeFiles/cmTC_4d5d6.dir/build
+        Building CXX object CMakeFiles/cmTC_4d5d6.dir/randstest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_4d5d6.dir/randstest.cpp.o -MF CMakeFiles/cmTC_4d5d6.dir/randstest.cpp.o.d -o CMakeFiles/cmTC_4d5d6.dir/randstest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/randstest.cpp
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/randstest.cpp:7:2: error: unknown type name 'errno_t'
+                errno_t err = rand_s(&number);
+                ^
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/randstest.cpp:7:16: error: use of undeclared identifier 'rand_s'; did you mean 'rand_r'?
+                errno_t err = rand_s(&number);
+                              ^~~~~~
+                              rand_r
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/usr/include/stdlib.h:225:6: note: 'rand_r' declared here
+        int      rand_r(unsigned *) __swift_unavailable("Use arc4random instead.");
+                 ^
+        2 errors generated.
+        make[1]: *** [CMakeFiles/cmTC_4d5d6.dir/randstest.cpp.o] Error 1
+        make: *** [cmTC_4d5d6/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:154 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "strncpystest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_5e51c/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_5e51c.dir/build.make CMakeFiles/cmTC_5e51c.dir/build
+        Building CXX object CMakeFiles/cmTC_5e51c.dir/strncpystest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_5e51c.dir/strncpystest.cpp.o -MF CMakeFiles/cmTC_5e51c.dir/strncpystest.cpp.o.d -o CMakeFiles/cmTC_5e51c.dir/strncpystest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/strncpystest.cpp
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/strncpystest.cpp:6:38: error: use of undeclared identifier '_TRUNCATE'
+                strncpy_s(hostname,1024,"localhost",_TRUNCATE);
+                                                    ^
+        1 error generated.
+        make[1]: *** [CMakeFiles/cmTC_5e51c.dir/strncpystest.cpp.o] Error 1
+        make: *** [cmTC_5e51c/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:155 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "clockgettimetest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_9098d/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_9098d.dir/build.make CMakeFiles/cmTC_9098d.dir/build
+        Building CXX object CMakeFiles/cmTC_9098d.dir/clockgettimetest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_9098d.dir/clockgettimetest.cpp.o -MF CMakeFiles/cmTC_9098d.dir/clockgettimetest.cpp.o.d -o CMakeFiles/cmTC_9098d.dir/clockgettimetest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/clockgettimetest.cpp
+        Linking CXX executable cmTC_9098d
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9098d.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_9098d.dir/clockgettimetest.cpp.o -o cmTC_9098d 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:156 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "polltest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_c2451/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_c2451.dir/build.make CMakeFiles/cmTC_c2451.dir/build
+        Building CXX object CMakeFiles/cmTC_c2451.dir/polltest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_c2451.dir/polltest.cpp.o -MF CMakeFiles/cmTC_c2451.dir/polltest.cpp.o.d -o CMakeFiles/cmTC_c2451.dir/polltest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/polltest.cpp
+        Linking CXX executable cmTC_c2451
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c2451.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_c2451.dir/polltest.cpp.o -o cmTC_c2451 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:157 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "wsapolltest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_77704/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_77704.dir/build.make CMakeFiles/cmTC_77704.dir/build
+        Building CXX object CMakeFiles/cmTC_77704.dir/wsapolltest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_77704.dir/wsapolltest.cpp.o -MF CMakeFiles/cmTC_77704.dir/wsapolltest.cpp.o.d -o CMakeFiles/cmTC_77704.dir/wsapolltest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/wsapolltest.cpp
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/wsapolltest.cpp:1:10: fatal error: 'winsock2.h' file not found
+        #include <winsock2.h>
+                 ^~~~~~~~~~~~
+        1 error generated.
+        make[1]: *** [CMakeFiles/cmTC_77704.dir/wsapolltest.cpp.o] Error 1
+        make: *** [cmTC_77704/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:158 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "msgnosignaltest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_10b79/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_10b79.dir/build.make CMakeFiles/cmTC_10b79.dir/build
+        Building CXX object CMakeFiles/cmTC_10b79.dir/msgnosignaltest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_10b79.dir/msgnosignaltest.cpp.o -MF CMakeFiles/cmTC_10b79.dir/msgnosignaltest.cpp.o.d -o CMakeFiles/cmTC_10b79.dir/msgnosignaltest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/msgnosignaltest.cpp
+        Linking CXX executable cmTC_10b79
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_10b79.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_10b79.dir/msgnosignaltest.cpp.o -o cmTC_10b79 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "cmake/Macros.cmake:21 (try_compile)"
+      - "CMakeLists.txt:159 (jrtplib_test_feature)"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "ifaddrstest_RESULT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_54683/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_54683.dir/build.make CMakeFiles/cmTC_54683.dir/build
+        Building CXX object CMakeFiles/cmTC_54683.dir/ifaddrstest.cpp.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_54683.dir/ifaddrstest.cpp.o -MF CMakeFiles/cmTC_54683.dir/ifaddrstest.cpp.o.d -o CMakeFiles/cmTC_54683.dir/ifaddrstest.cpp.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/tools/ifaddrstest.cpp
+        Linking CXX executable cmTC_54683
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_54683.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_54683.dir/ifaddrstest.cpp.o -o cmTC_54683 
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:161 (check_cxx_source_compiles)"
+    checks:
+      - "Performing Test JRTPLIB_SNPRINTF_S"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-yDwWB8"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-yDwWB8"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "JRTPLIB_SNPRINTF_S"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-yDwWB8'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_29e68/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_29e68.dir/build.make CMakeFiles/cmTC_29e68.dir/build
+        Building CXX object CMakeFiles/cmTC_29e68.dir/src.cxx.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -DJRTPLIB_SNPRINTF_S  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_29e68.dir/src.cxx.o -MF CMakeFiles/cmTC_29e68.dir/src.cxx.o.d -o CMakeFiles/cmTC_29e68.dir/src.cxx.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-yDwWB8/src.cxx
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-yDwWB8/src.cxx:1:10: fatal error: 'windows.h' file not found
+        #include <windows.h>
+                 ^~~~~~~~~~~
+        1 error generated.
+        make[1]: *** [CMakeFiles/cmTC_29e68.dir/src.cxx.o] Error 1
+        make: *** [cmTC_29e68/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:165 (check_cxx_source_compiles)"
+    checks:
+      - "Performing Test JRTPLIB_SNPRINTF"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-DDEGRN"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-DDEGRN"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "JRTPLIB_SNPRINTF"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-DDEGRN'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_38ef5/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_38ef5.dir/build.make CMakeFiles/cmTC_38ef5.dir/build
+        Building CXX object CMakeFiles/cmTC_38ef5.dir/src.cxx.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -DJRTPLIB_SNPRINTF  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_38ef5.dir/src.cxx.o -MF CMakeFiles/cmTC_38ef5.dir/src.cxx.o.d -o CMakeFiles/cmTC_38ef5.dir/src.cxx.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-DDEGRN/src.cxx
+        /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-DDEGRN/src.cxx:1:10: fatal error: 'windows.h' file not found
+        #include <windows.h>
+                 ^~~~~~~~~~~
+        1 error generated.
+        make[1]: *** [CMakeFiles/cmTC_38ef5.dir/src.cxx.o] Error 1
+        make: *** [cmTC_38ef5/fast] Error 2
+        
+      exitCode: 2
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/opt/homebrew/Cellar/cmake/3.27.7/share/cmake/Modules/CheckCXXSourceCompiles.cmake:52 (cmake_check_source_compiles)"
+      - "CMakeLists.txt:173 (check_cxx_source_compiles)"
+    checks:
+      - "Performing Test JRTPLIB_STDINT"
+    directories:
+      source: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-ybSMOU"
+      binary: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-ybSMOU"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk"
+    buildResult:
+      variable: "JRTPLIB_STDINT"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-ybSMOU'
+        
+        Run Build Command(s): /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_80837/fast
+        /Applications/Xcode-15.0.0.app/Contents/Developer/usr/bin/make  -f CMakeFiles/cmTC_80837.dir/build.make CMakeFiles/cmTC_80837.dir/build
+        Building CXX object CMakeFiles/cmTC_80837.dir/src.cxx.o
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -DJRTPLIB_STDINT  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -MD -MT CMakeFiles/cmTC_80837.dir/src.cxx.o -MF CMakeFiles/cmTC_80837.dir/src.cxx.o.d -o CMakeFiles/cmTC_80837.dir/src.cxx.o -c /Users/takeru/Documents/GitHub/connect-udp-library/jrtplib-3.11.2/cmake/CMakeFiles/CMakeScratch/TryCompile-ybSMOU/src.cxx
+        Linking CXX executable cmTC_80837
+        /opt/homebrew/Cellar/cmake/3.27.7/bin/cmake -E cmake_link_script CMakeFiles/cmTC_80837.dir/link.txt --verbose=1
+        /Applications/Xcode-15.0.0.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -arch arm64 -isysroot /Applications/Xcode-15.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/cmTC_80837.dir/src.cxx.o -o cmTC_80837 
+        
+      exitCode: 0
+...
